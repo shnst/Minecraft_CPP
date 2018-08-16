@@ -9,13 +9,21 @@
 #ifndef World_hpp
 #define World_hpp
 
-class World {
+#include "Drawable.hpp"
+
+class Chunk;
+class ChunkRenderer;
+
+class World: Drawable {
 public:
     World();
     ~World();
     
-private:
+    void draw() const override;
     
+private:
+    Chunk* chunk;
+    ChunkRenderer* chunkRenderer;
 };
 
 #endif /* World_hpp */

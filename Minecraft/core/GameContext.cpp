@@ -9,7 +9,7 @@
 #include "GameContext.hpp"
 
 #include "Camera.hpp"
-//#include "FieldMode.hpp"
+#include "FieldMode.hpp"
 #include "GameMode.hpp"
 #include "UIManager.hpp"
 #include "UIUDP.hpp"
@@ -59,7 +59,7 @@ void GameContext::goTitle() {
 //    quitGame();
 //    UIManager::get().clearAllBaseUI();
 //    UIManager::get().addNewBaseUI(new UIUDP());
-//    startGame(new FieldMode());
+    startGame(new FieldMode());
 }
 
 Camera* GameContext::getCamera() {

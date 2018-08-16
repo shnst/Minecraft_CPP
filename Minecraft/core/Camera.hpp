@@ -11,33 +11,35 @@
 
 #include "Vector3d.hpp"
 
+#include <glm/glm.hpp>
+
 class Camera {
 public:
     Camera();
     ~Camera();
     
-    void setCoords(const vec3d& coords);
-    const vec3d& getCoords() const;
-    void setYaw(double yaw);
-    const double& getYaw() const;
+    void mouseInput(double x, double y);
     
-    void setAngle(const vec3d& angle);
-    const vec3d& getAngle() const;
-    vec3d getForward() const;
-    vec3d getRight() const;
-    vec3d getLookat() const;
+    const glm::vec3& getPosition() const;
+    glm::mat4 getMVPMatrix() const;
     
+    void forward();
+    void back();
+    void left();
+    void right();
 private:
     void updateVectors();
     
-    double yaw;//カメラの回転（Ｙ軸中心）
+    glm::vec3 position;
+    glm::vec3 lookat;
+    glm::vec3 up;
+    glm::vec3 angle;
     
-    vec3d coords;
-    vec3d angle;
-    vec3d forward;
-    vec3d right;
-    vec3d up;
-    vec3d lookat;
+    glm::vec3 _forward;
+    glm::vec3 _right;
+    
+    double previousMouseX;
+    double previousMouseY;
 };
 
 #endif /* Camera_hpp */

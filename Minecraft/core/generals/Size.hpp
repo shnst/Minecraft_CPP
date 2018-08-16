@@ -23,8 +23,8 @@ struct Size {
     ,height(0)
     {}
     
-    int width;
-    int height;
+    double width;
+    double height;
 };
 
 #endif /* Size_hpp */

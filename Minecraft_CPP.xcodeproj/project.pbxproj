@@ -42,6 +42,7 @@
 		B12DEC5121253DA7004B7F6A /* UIUDP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEC4D21253DA6004B7F6A /* UIUDP.cpp */; };
 		B12DEC5221253DA7004B7F6A /* UIGameMenuWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEC4F21253DA6004B7F6A /* UIGameMenuWindow.cpp */; };
 		B12DEC5621253DF2004B7F6A /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEC5421253DF2004B7F6A /* World.cpp */; };
+		B12DEC5B21254E8D004B7F6A /* ChunkRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEC5821254E8D004B7F6A /* ChunkRenderer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -136,6 +137,10 @@
 		B12DEC5021253DA6004B7F6A /* UIUDP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIUDP.hpp; sourceTree = "<group>"; };
 		B12DEC5421253DF2004B7F6A /* World.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = World.cpp; sourceTree = "<group>"; };
 		B12DEC5521253DF2004B7F6A /* World.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = World.hpp; sourceTree = "<group>"; };
+		B12DEC5721254E8D004B7F6A /* ChunkRenderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ChunkRenderer.hpp; sourceTree = "<group>"; };
+		B12DEC5821254E8D004B7F6A /* ChunkRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChunkRenderer.cpp; sourceTree = "<group>"; };
+		B12DEC5921254E8D004B7F6A /* Mesh.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Mesh.hpp; sourceTree = "<group>"; };
+		B12DEC5D212555B5004B7F6A /* Block.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Block.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,15 +205,6 @@
 				B12DEBEE21252E96004B7F6A /* test.vert */,
 			);
 			path = resources;
-			sourceTree = "<group>";
-		};
-		B12DEBE621252D60004B7F6A /* chunk */ = {
-			isa = PBXGroup;
-			children = (
-				B12DEBE721252D6E004B7F6A /* Chunk.cpp */,
-				B12DEBE821252D6E004B7F6A /* Chunk.hpp */,
-			);
-			path = chunk;
 			sourceTree = "<group>";
 		};
 		B12DEBEC21252D95004B7F6A /* core */ = {
@@ -370,9 +366,14 @@
 		B12DEC5321253DC0004B7F6A /* world */ = {
 			isa = PBXGroup;
 			children = (
-				B12DEBE621252D60004B7F6A /* chunk */,
+				B12DEC5D212555B5004B7F6A /* Block.hpp */,
+				B12DEC5821254E8D004B7F6A /* ChunkRenderer.cpp */,
+				B12DEC5721254E8D004B7F6A /* ChunkRenderer.hpp */,
+				B12DEC5921254E8D004B7F6A /* Mesh.hpp */,
 				B12DEC5421253DF2004B7F6A /* World.cpp */,
 				B12DEC5521253DF2004B7F6A /* World.hpp */,
+				B12DEBE721252D6E004B7F6A /* Chunk.cpp */,
+				B12DEBE821252D6E004B7F6A /* Chunk.hpp */,
 			);
 			path = world;
 			sourceTree = "<group>";
@@ -442,6 +443,7 @@
 				B12DEC4A21253D83004B7F6A /* GameMode.cpp in Sources */,
 				B12DEC022125307C004B7F6A /* ResourceManager.cpp in Sources */,
 				B12DEC5121253DA7004B7F6A /* UIUDP.cpp in Sources */,
+				B12DEC5B21254E8D004B7F6A /* ChunkRenderer.cpp in Sources */,
 				B12DEC2F21253167004B7F6A /* Updatable.cpp in Sources */,
 				B12DEBD821252AB1004B7F6A /* Texture.cpp in Sources */,
 				B12DEC4121253CED004B7F6A /* IOInterface.cpp in Sources */,

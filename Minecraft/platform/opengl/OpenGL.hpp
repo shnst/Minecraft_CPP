@@ -20,6 +20,9 @@ public:
     bool setup(int windowWidth, int windowHeight, const std::string& windowName);
     void run();
 private:
+    void render();
+    void update();
+    
     GLFWwindow* window;
 };
 

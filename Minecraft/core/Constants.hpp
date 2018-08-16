@@ -28,7 +28,7 @@ const int FIELD_HEIGHT = 200;
 
 const float PI_OVER_180 = 0.0174532925;
 
-const int CHUNK_SIZE = 1;
+const int CHUNK_SIZE = 10;
 
 
 #endif /* Constants_hpp */
