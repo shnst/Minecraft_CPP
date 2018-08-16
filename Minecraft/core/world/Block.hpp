@@ -11,7 +11,12 @@
 
 namespace Blocks{
     enum Types {
-        Soil,
+        Air,
+        Stone,
+        GrassBlock,
+        Dirt,
+        Water,
+        Sand,
     };
 }
 

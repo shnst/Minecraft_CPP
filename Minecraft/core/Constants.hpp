@@ -30,5 +30,9 @@ const float PI_OVER_180 = 0.0174532925;
 
 const int CHUNK_SIZE = 10;
 
+const int NUMBER_OF_CHUNKS_IN_WORLD_X = 10;
+const int NUMBER_OF_CHUNKS_IN_WORLD_Y = 1;
+const int NUMBER_OF_CHUNKS_IN_WORLD_Z = 10;
+
 
 #endif /* Constants_hpp */

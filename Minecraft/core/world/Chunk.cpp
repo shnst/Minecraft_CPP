@@ -9,7 +9,9 @@
 #include "Chunk.hpp"
 
 
-Chunk::Chunk(const vec3n& coords) {
+Chunk::Chunk(const vec3n& coords)
+:coords(coords)
+{
     for (auto xIt=blocks.begin(); xIt!=blocks.end(); ++xIt) {
         for (auto yIt=(*xIt).begin(); yIt!=(*xIt).end(); ++yIt) {
             for (auto zIt=(*yIt).begin(); zIt!=(*yIt).end(); ++zIt) {

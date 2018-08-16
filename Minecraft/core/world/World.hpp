@@ -9,6 +9,8 @@
 #ifndef World_hpp
 #define World_hpp
 
+#include <list>
+
 #include "Drawable.hpp"
 
 class Chunk;
@@ -20,9 +22,10 @@ public:
     ~World();
     
     void draw() const override;
-    
 private:
-    Chunk* chunk;
+    void generateChunks();
+    
+    std::list<Chunk*> chunks;
     ChunkRenderer* chunkRenderer;
 };
 
