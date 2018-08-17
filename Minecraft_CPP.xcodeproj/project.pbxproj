@@ -43,6 +43,9 @@
 		B12DEC5221253DA7004B7F6A /* UIGameMenuWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEC4F21253DA6004B7F6A /* UIGameMenuWindow.cpp */; };
 		B12DEC5621253DF2004B7F6A /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEC5421253DF2004B7F6A /* World.cpp */; };
 		B12DEC5B21254E8D004B7F6A /* ChunkRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEC5821254E8D004B7F6A /* ChunkRenderer.cpp */; };
+		B12DEC7E2126013F004B7F6A /* Noise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEC7C2126013F004B7F6A /* Noise.cpp */; };
+		B12DEC872126122F004B7F6A /* PerlinNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEC852126122F004B7F6A /* PerlinNoise.cpp */; };
+		B12DEC8A21261572004B7F6A /* TerrainGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEC8821261572004B7F6A /* TerrainGenerator.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -141,6 +144,13 @@
 		B12DEC5821254E8D004B7F6A /* ChunkRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChunkRenderer.cpp; sourceTree = "<group>"; };
 		B12DEC5921254E8D004B7F6A /* Mesh.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Mesh.hpp; sourceTree = "<group>"; };
 		B12DEC5D212555B5004B7F6A /* Block.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Block.hpp; sourceTree = "<group>"; };
+		B12DEC7C2126013F004B7F6A /* Noise.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Noise.cpp; sourceTree = "<group>"; };
+		B12DEC7D2126013F004B7F6A /* Noise.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Noise.hpp; sourceTree = "<group>"; };
+		B12DEC852126122F004B7F6A /* PerlinNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PerlinNoise.cpp; sourceTree = "<group>"; };
+		B12DEC862126122F004B7F6A /* PerlinNoise.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PerlinNoise.hpp; sourceTree = "<group>"; };
+		B12DEC8821261572004B7F6A /* TerrainGenerator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TerrainGenerator.cpp; sourceTree = "<group>"; };
+		B12DEC8921261572004B7F6A /* TerrainGenerator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TerrainGenerator.hpp; sourceTree = "<group>"; };
+		B12DEC8B21261E0F004B7F6A /* Time.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Time.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +248,7 @@
 		B12DEBFB21253020004B7F6A /* platform */ = {
 			isa = PBXGroup;
 			children = (
+				B12DEC8B21261E0F004B7F6A /* Time.hpp */,
 				B12DEBFC2125302E004B7F6A /* opengl */,
 			);
 			path = platform;
@@ -327,6 +338,8 @@
 		B12DEC2321253167004B7F6A /* library */ = {
 			isa = PBXGroup;
 			children = (
+				B12DEC852126122F004B7F6A /* PerlinNoise.cpp */,
+				B12DEC862126122F004B7F6A /* PerlinNoise.hpp */,
 				B12DEC2421253167004B7F6A /* picojson.h */,
 			);
 			path = library;
@@ -374,6 +387,10 @@
 				B12DEC5521253DF2004B7F6A /* World.hpp */,
 				B12DEBE721252D6E004B7F6A /* Chunk.cpp */,
 				B12DEBE821252D6E004B7F6A /* Chunk.hpp */,
+				B12DEC7C2126013F004B7F6A /* Noise.cpp */,
+				B12DEC7D2126013F004B7F6A /* Noise.hpp */,
+				B12DEC8821261572004B7F6A /* TerrainGenerator.cpp */,
+				B12DEC8921261572004B7F6A /* TerrainGenerator.hpp */,
 			);
 			path = world;
 			sourceTree = "<group>";
@@ -435,10 +452,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B12DEC4B21253D83004B7F6A /* FieldMode.cpp in Sources */,
+				B12DEC8A21261572004B7F6A /* TerrainGenerator.cpp in Sources */,
 				B12DEC3221253167004B7F6A /* Random.cpp in Sources */,
 				B12DEC5221253DA7004B7F6A /* UIGameMenuWindow.cpp in Sources */,
 				B12DEC3921253167004B7F6A /* UIComponent.cpp in Sources */,
 				B12DEC3821253167004B7F6A /* UIBaseView.cpp in Sources */,
+				B12DEC872126122F004B7F6A /* PerlinNoise.cpp in Sources */,
 				B12DEC3A21253167004B7F6A /* UIManager.cpp in Sources */,
 				B12DEC4A21253D83004B7F6A /* GameMode.cpp in Sources */,
 				B12DEC022125307C004B7F6A /* ResourceManager.cpp in Sources */,
@@ -462,6 +481,7 @@
 				B12DEC3721253167004B7F6A /* UIButton.cpp in Sources */,
 				B12DEC3B21253167004B7F6A /* Drawer.cpp in Sources */,
 				B12DEC3321253167004B7F6A /* ColorDefinition.cpp in Sources */,
+				B12DEC7E2126013F004B7F6A /* Noise.cpp in Sources */,
 				B12DEC3521253167004B7F6A /* UILabel.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,22 +15,21 @@
 
 class Chunk;
 class Mesh;
+class World;
 
 class ChunkRenderer {
 public:
     ChunkRenderer();
     ~ChunkRenderer();
     
-    void createMesh(const std::list<Chunk*>& chunks);
-    void render(const std::list<Chunk*>& chunks);
+    void createMesh(const World& world, const std::vector<std::vector<std::vector<Chunk*>>>& chunks);
+    void render(const World& world, const std::vector<std::vector<std::vector<Chunk*>>>& chunks);
 private:
-    bool isBlocked(const Chunk& chunk, int x, int y, int z, BlockFace::Types face) const;
     
     Mesh* mesh;
     
-    unsigned int verticesVBO;
-    unsigned int textureVBO;
-    
+    unsigned int vertexBuffer;
+    unsigned int uvBuffer;
 };
 
 #endif /* ChunkRenderer_hpp */

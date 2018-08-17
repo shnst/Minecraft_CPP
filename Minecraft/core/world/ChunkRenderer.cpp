@@ -22,102 +22,113 @@
 #include "Chunk.hpp"
 #include "Mesh.hpp"
 #include "ResourceManager.hpp"
+#include "World.hpp"
 
 ChunkRenderer::ChunkRenderer()
 :mesh(new Mesh())
 {
-    glGenBuffers(1, &verticesVBO); //バッファを作成
-    glGenBuffers(1, &textureVBO); //バッファを作成
+    glGenBuffers(1, &vertexBuffer); //バッファを作成
+    glGenBuffers(1, &uvBuffer); //バッファを作成
 }
 
 ChunkRenderer::~ChunkRenderer() {
     
 }
 
-void ChunkRenderer::createMesh(const std::list<Chunk*>& chunks) {
+void ChunkRenderer::createMesh(const World& world, const std::vector<std::vector<std::vector<Chunk*>>>& chunks) {
     mesh->vertices.clear();
     mesh->textureCoords.clear();
     for (auto it=chunks.begin(); it!=chunks.end(); ++it) {
-        auto chunk = *it;
-        auto blocks = chunk->getBlocks();
-        
-        auto xSize = blocks.size();
-        auto ySize = blocks[0].size();
-        auto zSize = blocks[0][0].size();
-        
-        
-        auto chunkCoords = chunk->getCoords();
-        
-    //    std::cout << "ChunkRenderer::createMesh chunkX:" << offsetX << " chunkY:" << offsetY << " chunkZ:" << offsetZ << std::endl;
-        
-        for (int x=0; x<xSize; ++x) {
-            for (int y=0; y<ySize; ++y) {
-                for (int z=0; z<zSize; ++z) {
-                    int offsetX = chunkCoords.x * CHUNK_SIZE;
-                    int offsetY = chunkCoords.y * CHUNK_SIZE;
-                    int offsetZ = chunkCoords.z * CHUNK_SIZE;
-                    
-                    if (!chunk->isBlocked(x, y+1, z)) {
-    //                    std::cout << "1" << std::endl;
-                        mesh->addFace(
-                                      offsetX + x, offsetY + y+1, offsetZ + z,
-                                      offsetX + x+1, offsetY + y+1, offsetZ + z,
-                                      offsetX + x, offsetY + y+1, offsetZ + z+1,
-                                      offsetX + x+1, offsetY + y+1, offsetZ + z+1,
-                                      48.0/256.0, 0, 16.0/256.0, 16.0/16.0);
-                    }
-                    
-                    
-                    if (!chunk->isBlocked(x, y-1, z)) {
-    //                    std::cout << "2" << std::endl;
-                        mesh->addFace(
-                                      offsetX + x, offsetY + y, offsetZ + z,
-                                      offsetX + x+1, offsetY + y, offsetZ + z,
-                                      offsetX + x, offsetY + y, offsetZ + z+1,
-                                      offsetX + x+1, offsetY + y, offsetZ + z+1,
-                                      16.0/256.0, 0, 16.0/256.0, 16.0/16.0);
-                    }
-    //
-    //
-                    if (!chunk->isBlocked(x-1, y, z)) {
-    //                    std::cout << "3" << std::endl;
-                        mesh->addFace(
-                                      offsetX + x, offsetY + y+1, offsetZ + z+1,
-                                      offsetX + x, offsetY + y+1, offsetZ + z,
-                                      offsetX + x, offsetY + y, offsetZ + z+1,
-                                      offsetX + x, offsetY + y, offsetZ + z,
-                                      32.0/256.0, 0, 16.0/256.0, 16.0/16.0);
-                    }
-    //
-    //
-                    if (!chunk->isBlocked(x+1, y, z)) {
-    //                    std::cout << "4" << std::endl;
-                        mesh->addFace(
-                                      offsetX + x+1, offsetY + y+1, offsetZ + z,
-                                      offsetX + x+1, offsetY + y+1, offsetZ + z+1,
-                                      offsetX + x+1, offsetY + y, offsetZ + z,
-                                      offsetX + x+1, offsetY + y, offsetZ + z+1,
-                                      32.0/256.0, 0, 16.0/256.0, 16.0/16.0);
-                    }
-    //
-                    if (!chunk->isBlocked(x, y, z-1)) {
-    //                    std::cout << "5" << std::endl;
-                        mesh->addFace(
-                                      offsetX + x, offsetY + y+1, offsetZ + z,
-                                      offsetX + x+1, offsetY + y+1, offsetZ + z,
-                                      offsetX + x, offsetY + y, offsetZ + z,
-                                      offsetX + x+1, offsetY + y, offsetZ + z,
-                                      32.0/256.0, 0, 16.0/256.0, 16.0/16.0);
-                    }
-    //
-                    if (!chunk->isBlocked(x, y, z+1)) {
-    //                    std::cout << "6" << std::endl;
-                        mesh->addFace(
-                                      offsetX + x+1, offsetY + y+1, offsetZ + z+1,
-                                      offsetX + x, offsetY + y+1, offsetZ + z+1,
-                                      offsetX + x+1, offsetY + y, offsetZ + z+1,
-                                      offsetX + x, offsetY + y, offsetZ + z+1,
-                                      32.0/256.0, 0, 16.0/256.0, 16.0/16.0);
+        for (auto it2=(*it).begin(); it2!=(*it).end(); ++it2) {
+            for (auto it3=(*it2).begin(); it3!=(*it2).end(); ++it3) {
+                auto chunk = *it3;
+                auto blocks = chunk->getBlocks();
+                
+                auto xSize = blocks.size();
+                auto ySize = blocks[0].size();
+                auto zSize = blocks[0][0].size();
+                
+                
+                auto chunkCoords = chunk->getCoords();
+                
+            //    std::cout << "ChunkRenderer::createMesh chunkX:" << offsetX << " chunkY:" << offsetY << " chunkZ:" << offsetZ << std::endl;
+                
+                for (int x=0; x<xSize; ++x) {
+                    for (int y=0; y<ySize; ++y) {
+                        for (int z=0; z<zSize; ++z) {
+                            auto blockType = chunk->getBlock(x, y, z);
+                            if (blockType == Blocks::Air) {
+                                continue;
+                            }
+                            
+                            
+                            int offsetX = chunkCoords.x * CHUNK_SIZE;
+                            int offsetY = chunkCoords.y * CHUNK_SIZE;
+                            int offsetZ = chunkCoords.z * CHUNK_SIZE;
+                            
+                            auto texture = Blocks::blockTextures[blockType];
+                            
+                            // top
+                            if (!world.isBlocked(offsetX + x, offsetY + y+1, offsetZ + z)) {
+            //                    std::cout << "1" << std::endl;
+                                mesh->addFace(
+                                              offsetX + x, offsetY + y+1, offsetZ + z,
+                                              offsetX + x+1, offsetY + y+1, offsetZ + z,
+                                              offsetX + x, offsetY + y+1, offsetZ + z+1,
+                                              offsetX + x+1, offsetY + y+1, offsetZ + z+1,
+                                              texture.top[0], texture.top[1], texture.top[2], texture.top[3]);
+                            }
+                            
+                            // bottom
+                            if (!world.isBlocked(offsetX + x, offsetY + y-1, offsetZ + z)) {
+                                mesh->addFace(
+                                              offsetX + x, offsetY + y, offsetZ + z,
+                                              offsetX + x+1, offsetY + y, offsetZ + z,
+                                              offsetX + x, offsetY + y, offsetZ + z+1,
+                                              offsetX + x+1, offsetY + y, offsetZ + z+1,
+                                              texture.bottom[0], texture.bottom[1], texture.bottom[2], texture.bottom[3]);
+                            }
+            
+                            // side1
+                            if (!world.isBlocked(offsetX + x-1, offsetY + y, offsetZ + z)) {
+                                mesh->addFace(
+                                              offsetX + x, offsetY + y+1, offsetZ + z+1,
+                                              offsetX + x, offsetY + y+1, offsetZ + z,
+                                              offsetX + x, offsetY + y, offsetZ + z+1,
+                                              offsetX + x, offsetY + y, offsetZ + z,
+                                              texture.side[0], texture.side[1], texture.side[2], texture.side[3]);
+                            }
+                            
+                            // side2
+                            if (!world.isBlocked(offsetX + x+1, offsetY + y, offsetZ + z)) {
+                                mesh->addFace(
+                                              offsetX + x+1, offsetY + y+1, offsetZ + z,
+                                              offsetX + x+1, offsetY + y+1, offsetZ + z+1,
+                                              offsetX + x+1, offsetY + y, offsetZ + z,
+                                              offsetX + x+1, offsetY + y, offsetZ + z+1,
+                                              texture.side[0], texture.side[1], texture.side[2], texture.side[3]);
+                            }
+                            
+                            // side3
+                            if (!world.isBlocked(offsetX + x, offsetY + y, offsetZ + z-1)) {
+                                mesh->addFace(
+                                              offsetX + x, offsetY + y+1, offsetZ + z,
+                                              offsetX + x+1, offsetY + y+1, offsetZ + z,
+                                              offsetX + x, offsetY + y, offsetZ + z,
+                                              offsetX + x+1, offsetY + y, offsetZ + z,
+                                              texture.side[0], texture.side[1], texture.side[2], texture.side[3]);
+                            }
+                            
+                            // side4
+                            if (!world.isBlocked(offsetX + x, offsetY + y, offsetZ + z+1)) {
+                                mesh->addFace(
+                                              offsetX + x+1, offsetY + y+1, offsetZ + z+1,
+                                              offsetX + x, offsetY + y+1, offsetZ + z+1,
+                                              offsetX + x+1, offsetY + y, offsetZ + z+1,
+                                              offsetX + x, offsetY + y, offsetZ + z+1,
+                                              texture.side[0], texture.side[1], texture.side[2], texture.side[3]);
+                            }
+                        }
                     }
                 }
             }
@@ -125,8 +136,13 @@ void ChunkRenderer::createMesh(const std::list<Chunk*>& chunks) {
     }
 }
 
-void ChunkRenderer::render(const std::list<Chunk*>& chunks) {
-    createMesh(chunks);
+void ChunkRenderer::render(const World& world, const std::vector<std::vector<std::vector<Chunk*>>>& chunks) {
+    
+    static bool hasMeshCreated = false;
+    if (!hasMeshCreated) {
+        createMesh(world, chunks);
+        hasMeshCreated = true;
+    }
     
     std::cout << "ChunkRenderer::render numVertices:" << mesh->vertices.size() / 3 << std::endl;
     
@@ -134,14 +150,14 @@ void ChunkRenderer::render(const std::list<Chunk*>& chunks) {
     glGenVertexArrays(1, &VertexArrayID);
     glBindVertexArray(VertexArrayID);
     
-    GLuint vertexbuffer;
-    glGenBuffers(1, &vertexbuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+//    GLuint vertexbuffer;
+//    glGenBuffers(1, &vertexbuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glBufferData(GL_ARRAY_BUFFER, mesh->vertices.size() * sizeof(mesh->vertices.front()), &mesh->vertices.front(), GL_STATIC_DRAW);
     
-    GLuint uvbuffer;
-    glGenBuffers(1, &uvbuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
+//    GLuint uvbuffer;
+//    glGenBuffers(1, &uvBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
     glBufferData(GL_ARRAY_BUFFER, mesh->textureCoords.size() * sizeof(mesh->textureCoords.front()), &mesh->textureCoords.front(), GL_STATIC_DRAW);
     
     // Clear the screen
@@ -157,7 +173,7 @@ void ChunkRenderer::render(const std::list<Chunk*>& chunks) {
     
     // 1st attribute buffer : vertices
     glEnableVertexAttribArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glVertexAttribPointer(
                           0,                  // attribute. No particular reason for 0, but must match the layout in the shader.
                           3,                  // size
@@ -169,7 +185,7 @@ void ChunkRenderer::render(const std::list<Chunk*>& chunks) {
     
     // 2nd attribute buffer : UVs
     glEnableVertexAttribArray(1);
-    glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
     glVertexAttribPointer(
                           1,                                // attribute. No particular reason for 1, but must match the layout in the shader.
                           2,                                // size : U+V => 2
@@ -187,7 +203,5 @@ void ChunkRenderer::render(const std::list<Chunk*>& chunks) {
     
     
     // Cleanup VBO and shader
-    glDeleteBuffers(1, &vertexbuffer);
-    glDeleteBuffers(1, &uvbuffer);
     glDeleteVertexArrays(1, &VertexArrayID);
 }

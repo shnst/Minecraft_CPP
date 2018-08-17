@@ -20,12 +20,17 @@ public:
     Chunk(const vec3n& coords);
     ~Chunk();
     
+    void setBlock(int x, int y, int z, Blocks::Types blockType);
+    
+    Blocks::Types getBlock(int x, int y, int z) const;
     const std::array<std::array<std::array<Blocks::Types, CHUNK_SIZE>, CHUNK_SIZE>, CHUNK_SIZE>& getBlocks() const;
-    
     bool isBlocked(int x, int y, int z) const;
-    
     const vec3n& getCoords() const;
+    bool hasNoised() const;
 private:
+    bool isInside(int x, int y, int z) const;
+    
+    bool noised;
     vec3n coords;
     
     std::array<std::array<std::array<Blocks::Types, CHUNK_SIZE>, CHUNK_SIZE>, CHUNK_SIZE> blocks;

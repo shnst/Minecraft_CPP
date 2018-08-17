@@ -104,9 +104,9 @@ public:
     
 };
 
-typedef vec3<int> vec3n;
-typedef vec3<float> vec3f;
-typedef vec3<double> vec3d;
+using vec3n = vec3<int>;
+using vec3f = vec3<float>;
+using vec3d = vec3<double>;
 
 
 #endif /* Vector3d_h */

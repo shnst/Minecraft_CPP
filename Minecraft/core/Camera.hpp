@@ -28,7 +28,6 @@ public:
     void left();
     void right();
 private:
-    void updateVectors();
     
     glm::vec3 position;
     glm::vec3 lookat;

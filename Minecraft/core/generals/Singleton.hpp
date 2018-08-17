@@ -23,7 +23,7 @@ public:
         return getReference(s_singleton);
     }
 private:
-    typedef T* singleton_pointer_type;
+    using singleton_pointer_type = T*;
     inline static T* createInstance() { return new T(); }
     inline static T& getReference(const singleton_pointer_type& ptr){
         return *ptr;

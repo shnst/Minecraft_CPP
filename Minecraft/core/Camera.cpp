@@ -65,16 +65,11 @@ const glm::vec3& Camera::getPosition() const {
 
 glm::mat4 Camera::getMVPMatrix() const {
     auto windowSize = getWindowSize();
-//
-//    glm::mat4 view = glm::lookAt(position, position + lookat, up);
-//    glm::mat4 projection = glm::perspective(45.0f, static_cast<float>(windowSize.width/windowSize.height), 0.01f, 1000.0f);
-//
-//    return projection * view;
     
     // Send our transformation to the currently bound shader,
     // in the "MVP" uniform
     // Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
-    glm::mat4 projection = glm::perspective(glm::radians(45.0f), static_cast<float>(windowSize.width/windowSize.height), 0.1f, 100.0f);
+    glm::mat4 projection = glm::perspective(glm::radians(45.0f), static_cast<float>(windowSize.width/windowSize.height), 0.1f, 1000.0f);
     // Camera matrix
     glm::mat4 view       = glm::lookAt(
                                        position, // Camera is at (4,3,3), in World Space
@@ -87,30 +82,15 @@ glm::mat4 Camera::getMVPMatrix() const {
     return projection * view * model; // Remember, matrix multiplication is the other way around
 }
 
-// Calculate the forward, right and lookat vectors from the angle vector
-void Camera::updateVectors() {
-//    _forward.x = sin(angle.x);
-//    _forward.y = 0;
-//    _forward.z = cos(angle.x);
-//
-//    _right.x = -cos(angle.x);
-//    _right.y = 0;
-//    _right.z = sin(angle.x);
-//
-//    lookat.x = sin(angle.x) * cos(angle.y);
-//    lookat.y = sin(angle.y);
-//    lookat.z = cos(angle.x) * cos(angle.y);
-}
-
 void Camera::forward() {
     std::cout << "Camera::forward distance:" << glm::distance(lookat, position) << std::endl;
-    auto delta = glm::normalize(lookat-position) * 0.1f;
+    auto delta = glm::normalize(lookat-position) * 0.4f;
     position += delta;
     lookat += delta;
 }
 
 void Camera::back() {
-    auto delta = glm::normalize(lookat-position) * 0.1f;
+    auto delta = glm::normalize(lookat-position) * 0.4f;
     position -= delta;
     lookat -= delta;
 }

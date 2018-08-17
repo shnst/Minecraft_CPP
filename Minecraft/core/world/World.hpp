@@ -10,11 +10,14 @@
 #define World_hpp
 
 #include <list>
+#include <vector>
 
+#include "Block.hpp"
 #include "Drawable.hpp"
 
 class Chunk;
 class ChunkRenderer;
+class TerrainGenerator;
 
 class World: Drawable {
 public:
@@ -22,11 +25,15 @@ public:
     ~World();
     
     void draw() const override;
+    bool isBlocked(int x, int y, int z) const;
+    void setBlock(int x, int y, int z, Blocks::Types block);
+    bool isInside(int x, int y, int z) const;
 private:
     void generateChunks();
     
-    std::list<Chunk*> chunks;
+    std::vector<std::vector<std::vector<Chunk*>>> chunks;
     ChunkRenderer* chunkRenderer;
+    TerrainGenerator* terrainGenerator;
 };
 
 #endif /* World_hpp */

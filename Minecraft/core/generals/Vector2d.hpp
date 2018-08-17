@@ -23,18 +23,18 @@ public:
     vec2(T x, T y) : x(x), y(y) {}
     vec2(const vec2& v) : x(v.x), y(v.y) {}
     
-    bool operator<(const vec2& v) const{
+    bool operator<(const vec2& v) const {
         if(x != v.x){
             return x < v.x;
         }
         return y < v.y;
     }
     
-    bool operator!=(const vec2& v) const{
+    bool operator!=(const vec2& v) const {
         return (x != v.x || y != v.y);
     }
     
-    bool operator==(const vec2& v) const{
+    bool operator==(const vec2& v) const {
         return (x == v.x && y == v.y);
     }
     
@@ -44,10 +44,10 @@ public:
         return *this;
     }
     
-    vec2 operator+(const vec2& v) const{
+    vec2 operator+(const vec2& v) const {
         return vec2(x + v.x, y + v.y);
     }
-    vec2 operator-(const vec2& v) const{
+    vec2 operator-(const vec2& v) const {
         return vec2(x - v.x, y - v.y);
     }
     vec2& operator+=(const vec2& v) {
@@ -154,8 +154,8 @@ public:
     
 };
 
-typedef vec2<int> vec2n;
-typedef vec2<float> vec2f;
-typedef vec2<double> vec2d;
+using vec2n = vec2<int>;
+using vec2f = vec2<float>;
+using vec2d = vec2<double>;
 
 #endif /* Vector2d_hpp */
