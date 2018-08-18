@@ -6,7 +6,7 @@
 //  Copyright © 2018 ShunSato. All rights reserved.
 //
 
-#include "Texture.hpp"
+#include "TextureHelper.hpp"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -223,6 +223,5 @@ unsigned int loadDDS(const char * imagepath){
     free(buffer);
     
     return textureID;
-    
-    
 }
+

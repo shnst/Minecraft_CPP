@@ -40,10 +40,10 @@ void TerrainGenerator::initializeNoises() {
 }
 
 void TerrainGenerator::generate(World& world, const std::vector<std::vector<std::vector<Chunk*>>>& chunks) {
-    auto worldHeight = NUMBER_OF_CHUNKS_IN_WORLD_Y * CHUNK_SIZE;
+    auto worldHeight = NUMBER_OF_CHUNKS_IN_WORLD_Y * NUMBER_OF_BLOCKS_IN_CHUNK_Y;
     
-    auto worldWidth1 = NUMBER_OF_CHUNKS_IN_WORLD_X * CHUNK_SIZE;
-    auto worldWidth2 = NUMBER_OF_CHUNKS_IN_WORLD_Z * CHUNK_SIZE;
+    auto worldWidth1 = NUMBER_OF_CHUNKS_IN_WORLD_X * NUMBER_OF_BLOCKS_IN_CHUNK_X;
+    auto worldWidth2 = NUMBER_OF_CHUNKS_IN_WORLD_Z * NUMBER_OF_BLOCKS_IN_CHUNK_Z;
     
     std::mt19937 randomGenerator(Time::now_ms());
     std::uniform_int_distribution<int> random(0, 1000);
@@ -63,9 +63,9 @@ void TerrainGenerator::generate(World& world, const std::vector<std::vector<std:
                 auto zSize = blocks.front().front().size();
 
                 auto chunkCoord = chunk->getCoords();
-                auto offsetX = CHUNK_SIZE * chunkCoord.x;
-                auto offsetY = CHUNK_SIZE * chunkCoord.y;
-                auto offsetZ = CHUNK_SIZE * chunkCoord.z;
+                auto offsetX = NUMBER_OF_BLOCKS_IN_CHUNK_X * chunkCoord.x;
+                auto offsetY = NUMBER_OF_BLOCKS_IN_CHUNK_Y * chunkCoord.y;
+                auto offsetZ = NUMBER_OF_BLOCKS_IN_CHUNK_Z * chunkCoord.z;
 
                 for (int x=0; x<xSize; ++x) {
                     for (int z=0; z<zSize; ++z) {
@@ -76,7 +76,7 @@ void TerrainGenerator::generate(World& world, const std::vector<std::vector<std:
                         auto noiseForStone = noises[1]->noise(perlinX, perlinZ, 0.4);
                         
                         auto groundHeight = static_cast<int>(floor(worldHeight * noiseForGrass));
-                        auto stoneHeight = static_cast<int>(floor(worldHeight * 1.0 * noiseForStone));
+                        auto stoneHeight = static_cast<int>(floor(worldHeight * 0.9 * noiseForStone));
 
                         for (int y=0; y<ySize; ++y) {
                             if (chunk->getBlock(x, y, z) != Blocks::Air) {
@@ -89,13 +89,13 @@ void TerrainGenerator::generate(World& world, const std::vector<std::vector<std:
                                     chunk->setBlock(x, y, z, Blocks::Water);
                                     continue;
                                 }
-                                if (groundHeight > stoneHeight && (y + offsetY) == groundHeight+1 && random(randomGenerator) < 5){
+                                if (groundHeight > stoneHeight && (y + offsetY) == groundHeight+1 && random(randomGenerator) < 1){
                                     // Trunk
                                     for(int i = 0; i < 5; i++) {
                                         chunk->setBlock(x, y+i, z, Blocks::Wood);
                                     }
-                                    
-//                                    // Leaves
+
+                                    // Leaves
                                     for(int k = -3; k <= 3; k++) {
                                         for(int l = -3; l <= 3; l++) {
                                             for(int m = -3; m <= 3; m++) {

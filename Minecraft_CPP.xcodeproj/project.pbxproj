@@ -7,11 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B121558821268B0B00E1012C /* skybox.dds in CopyFiles */ = {isa = PBXBuildFile; fileRef = B121558721268B0000E1012C /* skybox.dds */; };
+		B121558F2126987900E1012C /* skybox_bottom.dds in CopyFiles */ = {isa = PBXBuildFile; fileRef = B121558A2126987100E1012C /* skybox_bottom.dds */; };
+		B12155902126987900E1012C /* skybox_side1.dds in CopyFiles */ = {isa = PBXBuildFile; fileRef = B121558C2126987100E1012C /* skybox_side1.dds */; };
+		B12155912126987900E1012C /* skybox_side2.dds in CopyFiles */ = {isa = PBXBuildFile; fileRef = B121558D2126987100E1012C /* skybox_side2.dds */; };
+		B12155922126987900E1012C /* skybox_side3.dds in CopyFiles */ = {isa = PBXBuildFile; fileRef = B121558B2126987100E1012C /* skybox_side3.dds */; };
+		B12155932126987900E1012C /* skybox_side4.dds in CopyFiles */ = {isa = PBXBuildFile; fileRef = B12155892126987100E1012C /* skybox_side4.dds */; };
 		B12DEBC8212529E1004B7F6A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEBC7212529E1004B7F6A /* main.cpp */; };
 		B12DEBD021252A05004B7F6A /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B12DEBCF21252A05004B7F6A /* libGLEW.2.1.0.dylib */; };
 		B12DEBD221252A17004B7F6A /* libglfw.3.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B12DEBD121252A17004B7F6A /* libglfw.3.2.dylib */; };
-		B12DEBD521252A6A004B7F6A /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEBD321252A6A004B7F6A /* Shader.cpp */; };
-		B12DEBD821252AB1004B7F6A /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEBD621252AB1004B7F6A /* Texture.cpp */; };
+		B12DEBD521252A6A004B7F6A /* ShaderHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEBD321252A6A004B7F6A /* ShaderHelper.cpp */; };
+		B12DEBD821252AB1004B7F6A /* TextureHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEBD621252AB1004B7F6A /* TextureHelper.cpp */; };
 		B12DEBDA21252B2C004B7F6A /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B12DEBD921252B2C004B7F6A /* OpenGL.framework */; };
 		B12DEBE921252D6E004B7F6A /* Chunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEBE721252D6E004B7F6A /* Chunk.cpp */; };
 		B12DEBF021252EA5004B7F6A /* test.frag in CopyFiles */ = {isa = PBXBuildFile; fileRef = B12DEBEF21252E96004B7F6A /* test.frag */; };
@@ -46,6 +52,18 @@
 		B12DEC7E2126013F004B7F6A /* Noise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEC7C2126013F004B7F6A /* Noise.cpp */; };
 		B12DEC872126122F004B7F6A /* PerlinNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEC852126122F004B7F6A /* PerlinNoise.cpp */; };
 		B12DEC8A21261572004B7F6A /* TerrainGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEC8821261572004B7F6A /* TerrainGenerator.cpp */; };
+		B12DEC8E21267DB5004B7F6A /* Skybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEC8C21267DB5004B7F6A /* Skybox.cpp */; };
+		B12DEC9121267E12004B7F6A /* SkyboxRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEC8F21267E12004B7F6A /* SkyboxRenderer.cpp */; };
+		B1BF9C4D2126BC840017E26F /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1BF9C4B2126BC840017E26F /* Entity.cpp */; };
+		B1BF9C582127737E0017E26F /* SkyboxTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1BF9C562127737E0017E26F /* SkyboxTexture.cpp */; };
+		B1BF9C5C21277E0F0017E26F /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1BF9C5A21277E0F0017E26F /* Texture.cpp */; };
+		B1BF9C6021277E300017E26F /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1BF9C5E21277E300017E26F /* Shader.cpp */; };
+		B1BF9C6321277F480017E26F /* BasicTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1BF9C6121277F480017E26F /* BasicTexture.cpp */; };
+		B1BF9C69212784DA0017E26F /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1BF9C67212784DA0017E26F /* Model.cpp */; };
+		B1BF9C6C21278C3E0017E26F /* SkyboxModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1BF9C6A21278C3E0017E26F /* SkyboxModel.cpp */; };
+		B1BF9C6E2127ACF60017E26F /* skybox_top.dds in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1BF9C6D2127ACF10017E26F /* skybox_top.dds */; };
+		B1BF9C742127B4890017E26F /* skybox.frag in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1BF9C722127B47D0017E26F /* skybox.frag */; };
+		B1BF9C752127B4890017E26F /* skybox.vert in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1BF9C732127B47D0017E26F /* skybox.vert */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -55,6 +73,15 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				B1BF9C742127B4890017E26F /* skybox.frag in CopyFiles */,
+				B1BF9C752127B4890017E26F /* skybox.vert in CopyFiles */,
+				B1BF9C6E2127ACF60017E26F /* skybox_top.dds in CopyFiles */,
+				B121558F2126987900E1012C /* skybox_bottom.dds in CopyFiles */,
+				B12155902126987900E1012C /* skybox_side1.dds in CopyFiles */,
+				B12155912126987900E1012C /* skybox_side2.dds in CopyFiles */,
+				B12155922126987900E1012C /* skybox_side3.dds in CopyFiles */,
+				B12155932126987900E1012C /* skybox_side4.dds in CopyFiles */,
+				B121558821268B0B00E1012C /* skybox.dds in CopyFiles */,
 				B12DEBF621252FB9004B7F6A /* blocks.dds in CopyFiles */,
 				B12DEBF421252F15004B7F6A /* uvtemplate.DDS in CopyFiles */,
 				B12DEBF021252EA5004B7F6A /* test.frag in CopyFiles */,
@@ -65,14 +92,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B121558721268B0000E1012C /* skybox.dds */ = {isa = PBXFileReference; lastKnownFileType = file; path = skybox.dds; sourceTree = "<group>"; };
+		B12155892126987100E1012C /* skybox_side4.dds */ = {isa = PBXFileReference; lastKnownFileType = file; path = skybox_side4.dds; sourceTree = "<group>"; };
+		B121558A2126987100E1012C /* skybox_bottom.dds */ = {isa = PBXFileReference; lastKnownFileType = file; path = skybox_bottom.dds; sourceTree = "<group>"; };
+		B121558B2126987100E1012C /* skybox_side3.dds */ = {isa = PBXFileReference; lastKnownFileType = file; path = skybox_side3.dds; sourceTree = "<group>"; };
+		B121558C2126987100E1012C /* skybox_side1.dds */ = {isa = PBXFileReference; lastKnownFileType = file; path = skybox_side1.dds; sourceTree = "<group>"; };
+		B121558D2126987100E1012C /* skybox_side2.dds */ = {isa = PBXFileReference; lastKnownFileType = file; path = skybox_side2.dds; sourceTree = "<group>"; };
 		B12DEBC4212529E1004B7F6A /* Minecraft_CPP */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Minecraft_CPP; sourceTree = BUILT_PRODUCTS_DIR; };
 		B12DEBC7212529E1004B7F6A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B12DEBCF21252A05004B7F6A /* libGLEW.2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.1.0.dylib; path = ../../../../usr/local/Cellar/glew/2.1.0/lib/libGLEW.2.1.0.dylib; sourceTree = "<group>"; };
 		B12DEBD121252A17004B7F6A /* libglfw.3.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.2.dylib; path = ../../../../usr/local/Cellar/glfw/3.2.1/lib/libglfw.3.2.dylib; sourceTree = "<group>"; };
-		B12DEBD321252A6A004B7F6A /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
-		B12DEBD421252A6A004B7F6A /* Shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Shader.hpp; sourceTree = "<group>"; };
-		B12DEBD621252AB1004B7F6A /* Texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
-		B12DEBD721252AB1004B7F6A /* Texture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Texture.hpp; sourceTree = "<group>"; };
+		B12DEBD321252A6A004B7F6A /* ShaderHelper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderHelper.cpp; sourceTree = "<group>"; };
+		B12DEBD421252A6A004B7F6A /* ShaderHelper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ShaderHelper.hpp; sourceTree = "<group>"; };
+		B12DEBD621252AB1004B7F6A /* TextureHelper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextureHelper.cpp; sourceTree = "<group>"; };
+		B12DEBD721252AB1004B7F6A /* TextureHelper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TextureHelper.hpp; sourceTree = "<group>"; };
 		B12DEBD921252B2C004B7F6A /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		B12DEBE721252D6E004B7F6A /* Chunk.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Chunk.cpp; sourceTree = "<group>"; };
 		B12DEBE821252D6E004B7F6A /* Chunk.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Chunk.hpp; sourceTree = "<group>"; };
@@ -151,6 +184,27 @@
 		B12DEC8821261572004B7F6A /* TerrainGenerator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TerrainGenerator.cpp; sourceTree = "<group>"; };
 		B12DEC8921261572004B7F6A /* TerrainGenerator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TerrainGenerator.hpp; sourceTree = "<group>"; };
 		B12DEC8B21261E0F004B7F6A /* Time.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Time.hpp; sourceTree = "<group>"; };
+		B12DEC8C21267DB5004B7F6A /* Skybox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Skybox.cpp; sourceTree = "<group>"; };
+		B12DEC8D21267DB5004B7F6A /* Skybox.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Skybox.hpp; sourceTree = "<group>"; };
+		B12DEC8F21267E12004B7F6A /* SkyboxRenderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SkyboxRenderer.cpp; sourceTree = "<group>"; };
+		B12DEC9021267E12004B7F6A /* SkyboxRenderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SkyboxRenderer.hpp; sourceTree = "<group>"; };
+		B1BF9C4B2126BC840017E26F /* Entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
+		B1BF9C4C2126BC840017E26F /* Entity.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Entity.hpp; sourceTree = "<group>"; };
+		B1BF9C562127737E0017E26F /* SkyboxTexture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SkyboxTexture.cpp; sourceTree = "<group>"; };
+		B1BF9C572127737E0017E26F /* SkyboxTexture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SkyboxTexture.hpp; sourceTree = "<group>"; };
+		B1BF9C5A21277E0F0017E26F /* Texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		B1BF9C5B21277E0F0017E26F /* Texture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Texture.hpp; sourceTree = "<group>"; };
+		B1BF9C5E21277E300017E26F /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
+		B1BF9C5F21277E300017E26F /* Shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Shader.hpp; sourceTree = "<group>"; };
+		B1BF9C6121277F480017E26F /* BasicTexture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BasicTexture.cpp; sourceTree = "<group>"; };
+		B1BF9C6221277F480017E26F /* BasicTexture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BasicTexture.hpp; sourceTree = "<group>"; };
+		B1BF9C67212784DA0017E26F /* Model.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Model.cpp; sourceTree = "<group>"; };
+		B1BF9C68212784DA0017E26F /* Model.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Model.hpp; sourceTree = "<group>"; };
+		B1BF9C6A21278C3E0017E26F /* SkyboxModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SkyboxModel.cpp; sourceTree = "<group>"; };
+		B1BF9C6B21278C3E0017E26F /* SkyboxModel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SkyboxModel.hpp; sourceTree = "<group>"; };
+		B1BF9C6D2127ACF10017E26F /* skybox_top.dds */ = {isa = PBXFileReference; lastKnownFileType = file; path = skybox_top.dds; sourceTree = "<group>"; };
+		B1BF9C722127B47D0017E26F /* skybox.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = skybox.frag; sourceTree = "<group>"; };
+		B1BF9C732127B47D0017E26F /* skybox.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = skybox.vert; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +263,15 @@
 		B12DEBDB21252CF1004B7F6A /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				B1BF9C722127B47D0017E26F /* skybox.frag */,
+				B1BF9C732127B47D0017E26F /* skybox.vert */,
+				B1BF9C6D2127ACF10017E26F /* skybox_top.dds */,
+				B121558A2126987100E1012C /* skybox_bottom.dds */,
+				B121558C2126987100E1012C /* skybox_side1.dds */,
+				B121558D2126987100E1012C /* skybox_side2.dds */,
+				B121558B2126987100E1012C /* skybox_side3.dds */,
+				B12155892126987100E1012C /* skybox_side4.dds */,
+				B121558721268B0000E1012C /* skybox.dds */,
 				B12DEBF521252FB5004B7F6A /* blocks.dds */,
 				B12DEBF321252F11004B7F6A /* uvtemplate.DDS */,
 				B12DEBEF21252E96004B7F6A /* test.frag */,
@@ -234,17 +297,6 @@
 			path = core;
 			sourceTree = "<group>";
 		};
-		B12DEBFA21253000004B7F6A /* helpers */ = {
-			isa = PBXGroup;
-			children = (
-				B12DEBD321252A6A004B7F6A /* Shader.cpp */,
-				B12DEBD421252A6A004B7F6A /* Shader.hpp */,
-				B12DEBD621252AB1004B7F6A /* Texture.cpp */,
-				B12DEBD721252AB1004B7F6A /* Texture.hpp */,
-			);
-			path = helpers;
-			sourceTree = "<group>";
-		};
 		B12DEBFB21253020004B7F6A /* platform */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,7 +309,7 @@
 		B12DEBFC2125302E004B7F6A /* opengl */ = {
 			isa = PBXGroup;
 			children = (
-				B12DEBFA21253000004B7F6A /* helpers */,
+				B1BF9C64212784A70017E26F /* Render */,
 				B12DEBFD21253053004B7F6A /* OpenGL.cpp */,
 				B12DEBFE21253053004B7F6A /* OpenGL.hpp */,
 				B12DEC002125307C004B7F6A /* ResourceManager.cpp */,
@@ -380,8 +432,6 @@
 			isa = PBXGroup;
 			children = (
 				B12DEC5D212555B5004B7F6A /* Block.hpp */,
-				B12DEC5821254E8D004B7F6A /* ChunkRenderer.cpp */,
-				B12DEC5721254E8D004B7F6A /* ChunkRenderer.hpp */,
 				B12DEC5921254E8D004B7F6A /* Mesh.hpp */,
 				B12DEC5421253DF2004B7F6A /* World.cpp */,
 				B12DEC5521253DF2004B7F6A /* World.hpp */,
@@ -391,8 +441,63 @@
 				B12DEC7D2126013F004B7F6A /* Noise.hpp */,
 				B12DEC8821261572004B7F6A /* TerrainGenerator.cpp */,
 				B12DEC8921261572004B7F6A /* TerrainGenerator.hpp */,
+				B12DEC8C21267DB5004B7F6A /* Skybox.cpp */,
+				B12DEC8D21267DB5004B7F6A /* Skybox.hpp */,
+				B12DEC8F21267E12004B7F6A /* SkyboxRenderer.cpp */,
+				B12DEC9021267E12004B7F6A /* SkyboxRenderer.hpp */,
+				B12DEC5821254E8D004B7F6A /* ChunkRenderer.cpp */,
+				B12DEC5721254E8D004B7F6A /* ChunkRenderer.hpp */,
+				B1BF9C4B2126BC840017E26F /* Entity.cpp */,
+				B1BF9C4C2126BC840017E26F /* Entity.hpp */,
 			);
 			path = world;
+			sourceTree = "<group>";
+		};
+		B1BF9C5921277C7A0017E26F /* Texture */ = {
+			isa = PBXGroup;
+			children = (
+				B12DEBD621252AB1004B7F6A /* TextureHelper.cpp */,
+				B12DEBD721252AB1004B7F6A /* TextureHelper.hpp */,
+				B1BF9C562127737E0017E26F /* SkyboxTexture.cpp */,
+				B1BF9C572127737E0017E26F /* SkyboxTexture.hpp */,
+				B1BF9C6121277F480017E26F /* BasicTexture.cpp */,
+				B1BF9C6221277F480017E26F /* BasicTexture.hpp */,
+				B1BF9C5A21277E0F0017E26F /* Texture.cpp */,
+				B1BF9C5B21277E0F0017E26F /* Texture.hpp */,
+			);
+			path = Texture;
+			sourceTree = "<group>";
+		};
+		B1BF9C5D21277E280017E26F /* Shader */ = {
+			isa = PBXGroup;
+			children = (
+				B12DEBD321252A6A004B7F6A /* ShaderHelper.cpp */,
+				B12DEBD421252A6A004B7F6A /* ShaderHelper.hpp */,
+				B1BF9C5E21277E300017E26F /* Shader.cpp */,
+				B1BF9C5F21277E300017E26F /* Shader.hpp */,
+			);
+			path = Shader;
+			sourceTree = "<group>";
+		};
+		B1BF9C64212784A70017E26F /* Render */ = {
+			isa = PBXGroup;
+			children = (
+				B1BF9C66212784C60017E26F /* Model */,
+				B1BF9C5D21277E280017E26F /* Shader */,
+				B1BF9C5921277C7A0017E26F /* Texture */,
+			);
+			path = Render;
+			sourceTree = "<group>";
+		};
+		B1BF9C66212784C60017E26F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B1BF9C67212784DA0017E26F /* Model.cpp */,
+				B1BF9C68212784DA0017E26F /* Model.hpp */,
+				B1BF9C6A21278C3E0017E26F /* SkyboxModel.cpp */,
+				B1BF9C6B21278C3E0017E26F /* SkyboxModel.hpp */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -456,23 +561,31 @@
 				B12DEC3221253167004B7F6A /* Random.cpp in Sources */,
 				B12DEC5221253DA7004B7F6A /* UIGameMenuWindow.cpp in Sources */,
 				B12DEC3921253167004B7F6A /* UIComponent.cpp in Sources */,
+				B12DEC8E21267DB5004B7F6A /* Skybox.cpp in Sources */,
+				B12DEC9121267E12004B7F6A /* SkyboxRenderer.cpp in Sources */,
 				B12DEC3821253167004B7F6A /* UIBaseView.cpp in Sources */,
 				B12DEC872126122F004B7F6A /* PerlinNoise.cpp in Sources */,
 				B12DEC3A21253167004B7F6A /* UIManager.cpp in Sources */,
 				B12DEC4A21253D83004B7F6A /* GameMode.cpp in Sources */,
+				B1BF9C582127737E0017E26F /* SkyboxTexture.cpp in Sources */,
 				B12DEC022125307C004B7F6A /* ResourceManager.cpp in Sources */,
 				B12DEC5121253DA7004B7F6A /* UIUDP.cpp in Sources */,
 				B12DEC5B21254E8D004B7F6A /* ChunkRenderer.cpp in Sources */,
+				B1BF9C6321277F480017E26F /* BasicTexture.cpp in Sources */,
 				B12DEC2F21253167004B7F6A /* Updatable.cpp in Sources */,
-				B12DEBD821252AB1004B7F6A /* Texture.cpp in Sources */,
+				B12DEBD821252AB1004B7F6A /* TextureHelper.cpp in Sources */,
 				B12DEC4121253CED004B7F6A /* IOInterface.cpp in Sources */,
 				B12DEC3621253167004B7F6A /* UIView.cpp in Sources */,
 				B12DEC4421253D57004B7F6A /* GameContext.cpp in Sources */,
 				B12DEC3121253167004B7F6A /* Drawable.cpp in Sources */,
-				B12DEBD521252A6A004B7F6A /* Shader.cpp in Sources */,
+				B1BF9C6C21278C3E0017E26F /* SkyboxModel.cpp in Sources */,
+				B12DEBD521252A6A004B7F6A /* ShaderHelper.cpp in Sources */,
 				B12DEC3421253167004B7F6A /* JsonParser.cpp in Sources */,
 				B12DEBF921252FF2004B7F6A /* Camera.cpp in Sources */,
+				B1BF9C4D2126BC840017E26F /* Entity.cpp in Sources */,
 				B12DEC3021253167004B7F6A /* Updater.cpp in Sources */,
+				B1BF9C69212784DA0017E26F /* Model.cpp in Sources */,
+				B1BF9C5C21277E0F0017E26F /* Texture.cpp in Sources */,
 				B12DEC2E21253167004B7F6A /* TouchEvent.cpp in Sources */,
 				B12DEBC8212529E1004B7F6A /* main.cpp in Sources */,
 				B12DEBFF21253053004B7F6A /* OpenGL.cpp in Sources */,
@@ -482,6 +595,7 @@
 				B12DEC3B21253167004B7F6A /* Drawer.cpp in Sources */,
 				B12DEC3321253167004B7F6A /* ColorDefinition.cpp in Sources */,
 				B12DEC7E2126013F004B7F6A /* Noise.cpp in Sources */,
+				B1BF9C6021277E300017E26F /* Shader.cpp in Sources */,
 				B12DEC3521253167004B7F6A /* UILabel.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,13 +1,13 @@
 //
-//  Texture.hpp
+//  TextureHelper.hpp
 //  OpenGLPractice1
 //
 //  Created by Shun Sato on 8/15/18.
 //  Copyright © 2018 ShunSato. All rights reserved.
 //
 
-#ifndef Texture_hpp
-#define Texture_hpp
+#ifndef TextureHelper_hpp
+#define TextureHelper_hpp
 
 // Load a .BMP file using our custom loader
 unsigned int loadBMP_custom(const char * imagepath);
@@ -20,4 +20,4 @@ unsigned int loadBMP_custom(const char * imagepath);
 // Load a .DDS file using GLFW's own loader
 unsigned int loadDDS(const char * imagepath);
 
-#endif /* Texture_hpp */
+#endif /* TextureHelper_hpp */

@@ -9,6 +9,7 @@
 #ifndef Mesh_hpp
 #define Mesh_hpp
 
+#include <string>
 #include <vector>
 
 struct Mesh {
@@ -28,6 +29,12 @@ struct Mesh {
         addPoint(x1, y1, z1, u, v);
         addPoint(x2, y2, z2, u + width, v + height);
         addPoint(x3, y3, z3, u, v + height);
+    }
+    
+    void addVertices(const std::vector<double>& vertices) {
+        for (auto it=vertices.begin(); it!=vertices.end(); ++it) {
+            this->vertices.push_back(*it);
+        }
     }
     
     std::vector<float> vertices;

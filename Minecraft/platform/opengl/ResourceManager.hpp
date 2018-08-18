@@ -15,18 +15,7 @@
 
 #include "Singleton.hpp"
 
-struct Shader {
-    unsigned int getAttribute(const std::string& attributeName) const {
-        return attributeID.at(attributeName);
-    }
-    
-    unsigned int getUniform(const std::string& uniformName) const {
-        return uniformID.at(uniformName);
-    }
-    unsigned int id;
-    std::unordered_map<std::string, unsigned int> uniformID;
-    std::unordered_map<std::string, unsigned int> attributeID;
-};
+class Shader;
 
 class ResourceManager: public Singleton<ResourceManager> {
 public:
@@ -44,12 +33,11 @@ private:
     bool isShaderLoaded(const std::string& name) const;
     bool isTextureLoaded(const std::string& name) const;
     
-    
     friend class Singleton<ResourceManager>;
     
     ResourceManager();
     
-    std::unordered_map<std::string, Shader> shaders;
+    std::unordered_map<std::string, Shader*> shaders;
     std::unordered_map<std::string, unsigned int> textures;
 };
 

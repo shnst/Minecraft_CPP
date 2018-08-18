@@ -27,7 +27,7 @@ Chunk::~Chunk() {
     
 }
 
-const std::array<std::array<std::array<Blocks::Types, CHUNK_SIZE>, CHUNK_SIZE>, CHUNK_SIZE>& Chunk::getBlocks() const {
+const std::array<std::array<std::array<Blocks::Types, NUMBER_OF_BLOCKS_IN_CHUNK_Z>, NUMBER_OF_BLOCKS_IN_CHUNK_Y>, NUMBER_OF_BLOCKS_IN_CHUNK_X>& Chunk::getBlocks() const {
     return blocks;
 }
 
@@ -45,13 +45,13 @@ bool Chunk::isBlocked(int x, int y, int z) const {
 }
 
 bool Chunk::isInside(int x, int y, int z) const {
-    if (x < 0 || CHUNK_SIZE <= x) {
+    if (x < 0 || NUMBER_OF_BLOCKS_IN_CHUNK_X <= x) {
         return false;
     }
-    if (y < 0 || CHUNK_SIZE <= y) {
+    if (y < 0 || NUMBER_OF_BLOCKS_IN_CHUNK_Y <= y) {
         return false;
     }
-    if (z < 0 || CHUNK_SIZE <= z) {
+    if (z < 0 || NUMBER_OF_BLOCKS_IN_CHUNK_Z <= z) {
         return false;
     }
     return true;

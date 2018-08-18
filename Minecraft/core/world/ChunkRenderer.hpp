@@ -15,6 +15,7 @@
 
 class Chunk;
 class Mesh;
+class Texture;
 class World;
 
 class ChunkRenderer {
@@ -27,6 +28,7 @@ public:
 private:
     
     Mesh* mesh;
+    Texture* texture;
     
     unsigned int vertexBuffer;
     unsigned int uvBuffer;

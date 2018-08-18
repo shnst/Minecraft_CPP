@@ -19,20 +19,30 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
+#include "BasicTexture.hpp"
+#include "Camera.hpp"
 #include "Chunk.hpp"
+#include "GameContext.hpp"
 #include "Mesh.hpp"
 #include "ResourceManager.hpp"
+#include "Shader.hpp"
+#include "Utils.hpp"
 #include "World.hpp"
 
 ChunkRenderer::ChunkRenderer()
 :mesh(new Mesh())
 {
+    texture = new BasicTexture();
+    texture->load("blocks.dds");
+    
     glGenBuffers(1, &vertexBuffer); //バッファを作成
     glGenBuffers(1, &uvBuffer); //バッファを作成
 }
 
 ChunkRenderer::~ChunkRenderer() {
-    
+    Utils::SafeDelete(texture);
+    glDeleteBuffers(1, &vertexBuffer);
+    glDeleteBuffers(1, &uvBuffer);
 }
 
 void ChunkRenderer::createMesh(const World& world, const std::vector<std::vector<std::vector<Chunk*>>>& chunks) {
@@ -61,16 +71,14 @@ void ChunkRenderer::createMesh(const World& world, const std::vector<std::vector
                                 continue;
                             }
                             
-                            
-                            int offsetX = chunkCoords.x * CHUNK_SIZE;
-                            int offsetY = chunkCoords.y * CHUNK_SIZE;
-                            int offsetZ = chunkCoords.z * CHUNK_SIZE;
+                            int offsetX = chunkCoords.x * NUMBER_OF_BLOCKS_IN_CHUNK_X;
+                            int offsetY = chunkCoords.y * NUMBER_OF_BLOCKS_IN_CHUNK_Y;
+                            int offsetZ = chunkCoords.z * NUMBER_OF_BLOCKS_IN_CHUNK_Z;
                             
                             auto texture = Blocks::blockTextures[blockType];
                             
                             // top
                             if (!world.isBlocked(offsetX + x, offsetY + y+1, offsetZ + z)) {
-            //                    std::cout << "1" << std::endl;
                                 mesh->addFace(
                                               offsetX + x, offsetY + y+1, offsetZ + z,
                                               offsetX + x+1, offsetY + y+1, offsetZ + z,
@@ -150,26 +158,28 @@ void ChunkRenderer::render(const World& world, const std::vector<std::vector<std
     glGenVertexArrays(1, &VertexArrayID);
     glBindVertexArray(VertexArrayID);
     
-//    GLuint vertexbuffer;
-//    glGenBuffers(1, &vertexbuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glBufferData(GL_ARRAY_BUFFER, mesh->vertices.size() * sizeof(mesh->vertices.front()), &mesh->vertices.front(), GL_STATIC_DRAW);
     
-//    GLuint uvbuffer;
-//    glGenBuffers(1, &uvBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
     glBufferData(GL_ARRAY_BUFFER, mesh->textureCoords.size() * sizeof(mesh->textureCoords.front()), &mesh->textureCoords.front(), GL_STATIC_DRAW);
     
-    // Clear the screen
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
     auto shader = ResourceManager::get().getShader("test");
 
+    // Use our shader
+    shader->use();
+
+    auto camera = GameContext::get().getCamera();
+    glUniformMatrix4fv(shader->getUniform("MVP"), 1, GL_FALSE, &camera->getMVPMatrix()[0][0]);
+
+
     // Bind our texture in Texture Unit 0
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, ResourceManager::get().getTexture("block.dds"));
-    // Set our "myTextureSampler" sampler to use Texture Unit 0
-    glUniform1i(shader->getUniform("myTextureSampler"), 0);
+//    glActiveTexture(GL_TEXTURE0);
+//    glBindTexture(GL_TEXTURE_2D, ResourceManager::get().getTexture("blocks.dds"));
+    
+    texture->bind();
+
+    glUniform1i(shader->getUniform("sampler"), 0);
     
     // 1st attribute buffer : vertices
     glEnableVertexAttribArray(0);
@@ -200,7 +210,6 @@ void ChunkRenderer::render(const World& world, const std::vector<std::vector<std
     
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
-    
     
     // Cleanup VBO and shader
     glDeleteVertexArrays(1, &VertexArrayID);

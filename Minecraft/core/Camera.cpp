@@ -46,11 +46,9 @@ void Camera::mouseInput(double x, double y) {
     
     auto deltaX = x - previousMouseX;
     auto deltaY = y - previousMouseY;
-    std::cout << "Camera::mouseInput x:" << x << " y:" << y << " deltaX:" << deltaX << " deltaY:" << deltaY << std::endl;
-    
-    auto windowSize = getWindowSize();
+//    std::cout << "Camera::mouseInput x:" << x << " y:" << y << " deltaX:" << deltaX << " deltaY:" << deltaY << std::endl;
 
-    lookat -= up * 0.01f * static_cast<float>(deltaY);
+    lookat -= up * 0.02f * static_cast<float>(deltaY);
     lookat += glm::cross(glm::normalize(lookat-position), up) * 0.05f * static_cast<float>(deltaX);
     
     lookat = position + (lookat-position) * 3.0f / glm::distance(lookat, position);
@@ -96,13 +94,13 @@ void Camera::back() {
 }
 
 void Camera::left() {
-    auto delta = glm::cross(glm::normalize(lookat-position), up) * 0.1f;
+    auto delta = glm::cross(glm::normalize(lookat-position), up) * 0.4f;
     position -= delta;
     lookat -= delta;
 }
 
 void Camera::right() {
-    auto delta = glm::cross(glm::normalize(lookat-position), up) * 0.1f;
+    auto delta = glm::cross(glm::normalize(lookat-position), up) * 0.4f;
     position += delta;
     lookat += delta;
 }

@@ -10,9 +10,11 @@
 
 #include "GameContext.hpp"
 
+#include "Constants.hpp"
+
 int main()
 {
-    OpenGL::get().setup(640, 480, "Minecraft_CPP");
+    OpenGL::get().setup(WINDOW_WIDTH, WINDOW_HEIGHT, "Minecraft_CPP");
     
     GameContext::get().goTitle();
     OpenGL::get().run();

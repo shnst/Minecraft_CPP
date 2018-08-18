@@ -24,13 +24,17 @@
 #include "Shader.hpp"
 #include "Texture.hpp"
 
+#include "ShaderHelper.hpp"
+#include "TextureHelper.hpp"
+#include "Utils.hpp"
+
 ResourceManager::ResourceManager() {
     
 }
 
 ResourceManager::~ResourceManager() {
     for (auto it=shaders.begin(); it!=shaders.end(); ++it) {
-        glDeleteProgram((*it).second.id);
+        Utils::SafeDelete((*it).second);
     }
     
     for (auto it=textures.begin(); it!=textures.end(); ++it) {
@@ -47,23 +51,23 @@ void ResourceManager::loadShader(const std::string& name, const std::vector<std:
         return;
     }
     
-    auto shader = Shader();
-    shader.id = shaderID;
+    auto shader = new Shader();
+    shader->id = shaderID;
     
     // Get a handle for our "MVP" uniform
     for (auto it=uniforms.begin(); it!=uniforms.end(); ++it) {
-        shader.uniformID[(*it)] = glGetUniformLocation(shaderID, (*it).c_str());
+        shader->uniformID[(*it)] = glGetUniformLocation(shaderID, (*it).c_str());
     }
     
     for (auto it=attributes.begin(); it!=attributes.end(); ++it) {
-        shader.attributeID[(*it)] = glGetUniformLocation(shaderID, (*it).c_str());
+        shader->attributeID[(*it)] = glGetUniformLocation(shaderID, (*it).c_str());
     }
     
     shaders[name] = shader;
 }
 
 void ResourceManager::loadTexture(const std::string& name) {
-    auto textureID = loadDDS("blocks.dds");
+    auto textureID = loadDDS(name.c_str());
     
     if (textureID == -1) {
         std::cout << "failed to load texture:" << name << std::endl;
@@ -77,25 +81,26 @@ const Shader* ResourceManager::getShader(const std::string& name) {
     if (!isShaderLoaded(name)) {
         return nullptr;
     }
-    return &(shaders.at(name));
+    return shaders.at(name);
 }
 
 unsigned int ResourceManager::getShaderUniform(const std::string& shaderName, const std::string& uniformName) {
     if (!isShaderLoaded(shaderName)) {
         return -1;
     }
-    return shaders.at(shaderName).uniformID.at(uniformName);
+    return shaders.at(shaderName)->uniformID.at(uniformName);
 }
 
 unsigned int ResourceManager::getShaderAttribute(const std::string& shaderName, const std::string& attributeName) {
     if (!isShaderLoaded(shaderName)) {
         return -1;
     }
-    return shaders.at(shaderName).attributeID.at(attributeName);
+    return shaders.at(shaderName)->attributeID.at(attributeName);
 }
 
 unsigned int ResourceManager::getTexture(const std::string& name) {
     if (!isTextureLoaded(name)) {
+        std::cout << "failed to get texture:" << name << std::endl;
         return -1;
     }
     return textures.at(name);

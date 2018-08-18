@@ -6,7 +6,7 @@
 //  Copyright © 2018 ShunSato. All rights reserved.
 //
 
-#include "Shader.hpp"
+#include "ShaderHelper.hpp"
 
 #include <stdio.h>
 #include <string>

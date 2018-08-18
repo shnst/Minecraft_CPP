@@ -31,6 +31,7 @@ using namespace glm;
 #include "ResourceManager.hpp"
 #include "Shader.hpp"
 #include "Texture.hpp"
+#include "Updater.hpp"
 
 void keyboardInput(GLFWwindow* window, int key, int scancode, int action, int mods) {
     auto camera = GameContext::get().getCamera();
@@ -113,8 +114,15 @@ bool OpenGL::setup(int windowWidth, int windowHeight, const std::string& windowN
     glfwSetCursorPosCallback(window, mouseInput);
     glfwSetKeyCallback(window, keyboardInput);
     
-    ResourceManager::get().loadShader("test", {"MVP", "myTextureSampler"}, {});
-    ResourceManager::get().loadTexture("blocks.dds");
+    ResourceManager::get().loadShader("test", {"MVP", "sampler"}, {});
+//    ResourceManager::get().loadTexture("blocks.dds");
+    ResourceManager::get().loadShader("skybox", {"MVP", "sampler"}, {});
+//    ResourceManager::get().loadTexture("skybox_up.dds");
+//    ResourceManager::get().loadTexture("skybox_bottom.dds");
+//    ResourceManager::get().loadTexture("skybox_side1.dds");
+//    ResourceManager::get().loadTexture("skybox_side2.dds");
+//    ResourceManager::get().loadTexture("skybox_side3.dds");
+//    ResourceManager::get().loadTexture("skybox_side4.dds");
     
     return true;
 }
@@ -133,21 +141,12 @@ void OpenGL::run() {
 }
 
 void OpenGL::update() {
-    
+    Updater::get().update(false);
 }
 
 void OpenGL::render() {
     // Clear the screen
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
-    auto shader = ResourceManager::get().getShader("test");
-    
-    // Use our shader
-    glUseProgram(shader->id);
-    
-    auto camera = GameContext::get().getCamera();
-    glUniformMatrix4fv(shader->getUniform("MVP"), 1, GL_FALSE, &camera->getMVPMatrix()[0][0]);
-    
     
     Drawer::get().draw();
     

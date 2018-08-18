@@ -17,6 +17,8 @@
 
 class Chunk;
 class ChunkRenderer;
+class Skybox;
+class SkyboxRenderer;
 class TerrainGenerator;
 
 class World: Drawable {
@@ -32,6 +34,9 @@ private:
     void generateChunks();
     
     std::vector<std::vector<std::vector<Chunk*>>> chunks;
+    Skybox* skybox;
+    
+    SkyboxRenderer* skyboxRenderer;
     ChunkRenderer* chunkRenderer;
     TerrainGenerator* terrainGenerator;
 };
