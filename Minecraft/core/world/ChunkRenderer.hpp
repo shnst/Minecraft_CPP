@@ -13,8 +13,10 @@
 
 #include "Block.hpp"
 
+class Camera;
 class Chunk;
 class Mesh;
+class Shader;
 class Texture;
 class World;
 
@@ -24,11 +26,12 @@ public:
     ~ChunkRenderer();
     
     void createMesh(const World& world, const std::vector<std::vector<std::vector<Chunk*>>>& chunks);
-    void render(const World& world, const std::vector<std::vector<std::vector<Chunk*>>>& chunks);
+    void render(const Camera& camera, const World& world, const std::vector<std::vector<std::vector<Chunk*>>>& chunks);
 private:
     
     Mesh* mesh;
     Texture* texture;
+    Shader* shader;
     
     unsigned int vertexBuffer;
     unsigned int uvBuffer;

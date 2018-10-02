@@ -11,12 +11,13 @@
 
 #include <string>
 #include <unordered_map>
+#include <vector>
 
 #include "ResourceManager.hpp"
 
 class Shader {
 public:
-    Shader(const std::string& programName);
+    Shader(const std::string& programName, const std::vector<std::string>& uniforms, const std::vector<std::string>&  attributes);
     ~Shader();
     
     unsigned int getAttribute(const std::string& attributeName) const;
@@ -28,6 +29,8 @@ public:
     void use() const;
     
 private:
+    unsigned int loadShaders(const char * vertex_file_path,const char * fragment_file_path);
+    
     friend class ResourceManager;
     
     unsigned int id;

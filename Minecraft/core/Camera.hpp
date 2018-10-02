@@ -9,19 +9,24 @@
 #ifndef Camera_hpp
 #define Camera_hpp
 
-#include "Vector3d.hpp"
-
 #include <glm/glm.hpp>
 
-class Camera {
+#include "Vector3d.hpp"
+#include "InputHandleable.hpp"
+
+class Camera: public InputHandleable {
 public:
     Camera();
     ~Camera();
     
-    void mouseInput(double x, double y);
+    void handleInput(const Input::Data& input) override;
+    
+    void setPosition(const vec3d& position);
+    void setLookat(const vec3d& lookat);
     
     const glm::vec3& getPosition() const;
     glm::mat4 getMVPMatrix() const;
+    glm::mat4 getMVPMatrixForCubeMap() const;
     
     void forward();
     void back();
@@ -32,10 +37,9 @@ private:
     glm::vec3 position;
     glm::vec3 lookat;
     glm::vec3 up;
-    glm::vec3 angle;
     
-    glm::vec3 _forward;
-    glm::vec3 _right;
+    glm::vec3 skyboxLookat;
+    const glm::vec3 skyboxOrigin;
     
     double previousMouseX;
     double previousMouseY;

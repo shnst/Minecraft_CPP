@@ -10,7 +10,8 @@
 
 #include <iostream>
 
-#include "JsonParser.hpp"
+#include "Camera.hpp"
+#include "Entity.hpp"
 #include "Utils.hpp"
 #include "World.hpp"
 
@@ -33,17 +34,18 @@ void FieldMode::pause(bool isPaused) {
 void FieldMode::quit() {
 }
 
-void FieldMode::handleKeyboardInput(Keyboard::Types key) {
-    const double delta = 1.0;
-    switch (key) {
-        case Keyboard::LEFT:
-            break;
-        case Keyboard::UP:
-            break;
-        case Keyboard::DOWN:
-            break;
-        case Keyboard::RIGHT:
-            break;
-        default: break;
+void FieldMode::handleInput(const Input::Data& input) {
+    if (input.mouseButtonEvent != nullptr) {
+        if (input.mouseButtonEvent->button == MouseButton::Right) {
+            world->save();
+        }
+    }
+    
+    auto cameraBindedEntity = world->getCameraBinidedEntity();
+    if (cameraBindedEntity == nullptr) {
+        auto camera = world->getCamera();
+        camera->handleInput(input);
+    } else {
+        cameraBindedEntity->handleInput(input);
     }
 }

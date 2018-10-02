@@ -10,12 +10,11 @@
 #define GameMode_hpp
 
 #include "Updatable.hpp"
-
-#include "Keyboard.hpp"
+#include "InputHandleable.hpp"
 
 class UIGameMenuWindow;
 
-class GameMode {
+class GameMode: public InputHandleable {
 public:
     GameMode();
     virtual ~GameMode();
@@ -23,7 +22,7 @@ public:
     virtual void start() = 0;
     virtual void pause(bool isPaused) = 0;
     virtual void quit() = 0;
-    virtual void handleKeyboardInput(Keyboard::Types key) = 0;
+    virtual void handleInput(const Input::Data& inputData) override = 0;
 protected:
     void openMenuWindow();
     void closeMenuWindow();

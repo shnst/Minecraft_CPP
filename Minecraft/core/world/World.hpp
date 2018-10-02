@@ -14,31 +14,50 @@
 
 #include "Block.hpp"
 #include "Drawable.hpp"
+#include "Updatable.hpp"
+#include "Vector3d.hpp"
 
-class Chunk;
+class Camera;
+class ChunkManager;
 class ChunkRenderer;
+class Entity;
 class Skybox;
 class SkyboxRenderer;
 class TerrainGenerator;
 
-class World: Drawable {
+class World: Drawable, Updatable {
 public:
     World();
     ~World();
     
+    void update(double delta) override;
+    
+    void save();
+    
+    Entity* getCameraBinidedEntity();
+    void setBlock(int x, int y, int z, Blocks::Types block);
+    
+    Camera* getCamera();
+    
+    vec3d getSpawnPoint() const;
+    Blocks::Types getBlock(int x, int y, int z) const;
+    
     void draw() const override;
     bool isBlocked(int x, int y, int z) const;
-    void setBlock(int x, int y, int z, Blocks::Types block);
-    bool isInside(int x, int y, int z) const;
-private:
-    void generateChunks();
+    bool doesChunkExist(int chunkX, int chunkY, int chunkZ) const;
+    bool isPassable(const vec3d& coord) const;
     
-    std::vector<std::vector<std::vector<Chunk*>>> chunks;
+private:
+    
+    ChunkManager* chunkManager;
     Skybox* skybox;
+    std::list<Entity*> entities;
+    Entity* cameraBindedEntity;
+    
+    Camera* camera;
     
     SkyboxRenderer* skyboxRenderer;
     ChunkRenderer* chunkRenderer;
-    TerrainGenerator* terrainGenerator;
 };
 
 #endif /* World_hpp */

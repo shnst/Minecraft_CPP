@@ -19,6 +19,10 @@ namespace Keyboard {
         LEFT,
         RIGHT,
         SPACE,
+        W,
+        A,
+        S,
+        D,
         ESC,
     };
 };

@@ -10,6 +10,7 @@
 #define GameContext_hpp
 
 #include "Singleton.hpp"
+#include "InputHandleable.hpp"
 
 class GameMode;
 class Camera;
@@ -45,14 +46,12 @@ public:
     
     GameMode* getGameMode();
     
-    Camera* getCamera();
+    void handleInput(const Input::Data& inputData);
 private:
     friend class Singleton<GameContext>;
     GameContext();
     
     GameMode* gameMode;
-    
-    Camera* camera;
 };
 
 #endif /* GameContext_hpp */

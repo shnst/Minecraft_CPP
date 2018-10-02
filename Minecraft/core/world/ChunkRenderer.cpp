@@ -24,7 +24,6 @@
 #include "Chunk.hpp"
 #include "GameContext.hpp"
 #include "Mesh.hpp"
-#include "ResourceManager.hpp"
 #include "Shader.hpp"
 #include "Utils.hpp"
 #include "World.hpp"
@@ -35,12 +34,15 @@ ChunkRenderer::ChunkRenderer()
     texture = new BasicTexture();
     texture->load("blocks.dds");
     
+    shader = new Shader("test", {"MVP", "sampler"}, {});
+    
     glGenBuffers(1, &vertexBuffer); //バッファを作成
     glGenBuffers(1, &uvBuffer); //バッファを作成
 }
 
 ChunkRenderer::~ChunkRenderer() {
     Utils::SafeDelete(texture);
+    Utils::SafeDelete(shader);
     glDeleteBuffers(1, &vertexBuffer);
     glDeleteBuffers(1, &uvBuffer);
 }
@@ -59,7 +61,7 @@ void ChunkRenderer::createMesh(const World& world, const std::vector<std::vector
                 auto zSize = blocks[0][0].size();
                 
                 
-                auto chunkCoords = chunk->getCoords();
+                auto chunkCoord = chunk->getCoord();
                 
             //    std::cout << "ChunkRenderer::createMesh chunkX:" << offsetX << " chunkY:" << offsetY << " chunkZ:" << offsetZ << std::endl;
                 
@@ -71,9 +73,9 @@ void ChunkRenderer::createMesh(const World& world, const std::vector<std::vector
                                 continue;
                             }
                             
-                            int offsetX = chunkCoords.x * NUMBER_OF_BLOCKS_IN_CHUNK_X;
-                            int offsetY = chunkCoords.y * NUMBER_OF_BLOCKS_IN_CHUNK_Y;
-                            int offsetZ = chunkCoords.z * NUMBER_OF_BLOCKS_IN_CHUNK_Z;
+                            int offsetX = chunkCoord.x * NUMBER_OF_BLOCKS_IN_CHUNK_X;
+                            int offsetY = chunkCoord.y * NUMBER_OF_BLOCKS_IN_CHUNK_Y;
+                            int offsetZ = chunkCoord.z * NUMBER_OF_BLOCKS_IN_CHUNK_Z;
                             
                             auto texture = Blocks::blockTextures[blockType];
                             
@@ -144,7 +146,7 @@ void ChunkRenderer::createMesh(const World& world, const std::vector<std::vector
     }
 }
 
-void ChunkRenderer::render(const World& world, const std::vector<std::vector<std::vector<Chunk*>>>& chunks) {
+void ChunkRenderer::render(const Camera& camera, const World& world, const std::vector<std::vector<std::vector<Chunk*>>>& chunks) {
     
     static bool hasMeshCreated = false;
     if (!hasMeshCreated) {
@@ -152,7 +154,7 @@ void ChunkRenderer::render(const World& world, const std::vector<std::vector<std
         hasMeshCreated = true;
     }
     
-    std::cout << "ChunkRenderer::render numVertices:" << mesh->vertices.size() / 3 << std::endl;
+//    std::cout << "ChunkRenderer::render numVertices:" << mesh->vertices.size() / 3 << std::endl;
     
     GLuint VertexArrayID;
     glGenVertexArrays(1, &VertexArrayID);
@@ -163,19 +165,11 @@ void ChunkRenderer::render(const World& world, const std::vector<std::vector<std
     
     glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
     glBufferData(GL_ARRAY_BUFFER, mesh->textureCoords.size() * sizeof(mesh->textureCoords.front()), &mesh->textureCoords.front(), GL_STATIC_DRAW);
-    
-    auto shader = ResourceManager::get().getShader("test");
 
     // Use our shader
     shader->use();
 
-    auto camera = GameContext::get().getCamera();
-    glUniformMatrix4fv(shader->getUniform("MVP"), 1, GL_FALSE, &camera->getMVPMatrix()[0][0]);
-
-
-    // Bind our texture in Texture Unit 0
-//    glActiveTexture(GL_TEXTURE0);
-//    glBindTexture(GL_TEXTURE_2D, ResourceManager::get().getTexture("blocks.dds"));
+    glUniformMatrix4fv(shader->getUniform("MVP"), 1, GL_FALSE, &camera.getMVPMatrix()[0][0]);
     
     texture->bind();
 

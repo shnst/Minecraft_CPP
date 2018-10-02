@@ -8,17 +8,15 @@
 
 #include "GameContext.hpp"
 
-#include "Camera.hpp"
 #include "FieldMode.hpp"
 #include "GameMode.hpp"
 #include "UIManager.hpp"
-#include "UIUDP.hpp"
+#include "UITitleScreen.hpp"
 #include "Utils.hpp"
 
 
 GameContext::GameContext()
 :gameMode(nullptr)
-,camera(new Camera())
 {
 }
 
@@ -28,7 +26,7 @@ GameContext::~GameContext() {
 
 void GameContext::openUDP() {
     UIManager::get().clearAllBaseUI();
-    UIManager::get().addNewBaseUI(new UIUDP());
+    UIManager::get().addNewBaseUI(new UITitleScreen());
 }
 
 void GameContext::setPauseGame(bool isPaused) {
@@ -58,10 +56,13 @@ void GameContext::quitGame() {
 void GameContext::goTitle() {
 //    quitGame();
 //    UIManager::get().clearAllBaseUI();
-//    UIManager::get().addNewBaseUI(new UIUDP());
+//    UIManager::get().addNewBaseUI(new UITitleScreen());
     startGame(new FieldMode());
 }
 
-Camera* GameContext::getCamera() {
-    return camera;
+void GameContext::handleInput(const Input::Data& inputData) {
+    if (gameMode == nullptr) {
+        return;
+    }
+    gameMode->handleInput(inputData);
 }

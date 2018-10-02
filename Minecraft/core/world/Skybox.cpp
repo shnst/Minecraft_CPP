@@ -8,9 +8,6 @@
 
 #include "Skybox.hpp"
 
-#include "Camera.hpp"
-#include "GameContext.hpp"
-
 Skybox::Skybox(double size)
 :size(size)
 {
@@ -20,13 +17,7 @@ Skybox::~Skybox() {
     
 }
 
-void Skybox::update() {
-    auto cameraPosition = GameContext::get().getCamera()->getPosition();
-    coords.set(cameraPosition.x, cameraPosition.y, cameraPosition.z);
-}
-
-const vec3d& Skybox::getCoords() const {
-    return coords;
+void Skybox::update(double delta) {
 }
 
 double Skybox::getSize() const {

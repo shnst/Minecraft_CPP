@@ -10,6 +10,7 @@
 #define Chunk_hpp
 
 #include <array>
+#include <string>
 
 #include "Block.hpp"
 #include "Constants.hpp"
@@ -25,13 +26,16 @@ public:
     Blocks::Types getBlock(int x, int y, int z) const;
     const std::array<std::array<std::array<Blocks::Types, NUMBER_OF_BLOCKS_IN_CHUNK_Z>, NUMBER_OF_BLOCKS_IN_CHUNK_Y>, NUMBER_OF_BLOCKS_IN_CHUNK_X>& getBlocks() const;
     bool isBlocked(int x, int y, int z) const;
-    const vec3n& getCoords() const;
+    const vec3n& getCoord() const;
     bool hasNoised() const;
+    
+    std::string serializeBlocks() const;
+    bool deserializeBlocks(const std::string& serializedString);
 private:
     bool isInside(int x, int y, int z) const;
     
     bool noised;
-    vec3n coords;
+    vec3n coord;
     
     std::array<std::array<std::array<Blocks::Types, NUMBER_OF_BLOCKS_IN_CHUNK_Z>, NUMBER_OF_BLOCKS_IN_CHUNK_Y>, NUMBER_OF_BLOCKS_IN_CHUNK_X> blocks;
 };

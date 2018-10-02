@@ -7,3 +7,17 @@
 //
 
 #include "Entity.hpp"
+
+#include "AABB.hpp"
+
+Entity::Entity()
+{
+}
+
+Entity::~Entity() {
+    
+}
+
+const AABB* Entity::getAABB() const {
+    return aabb;
+}

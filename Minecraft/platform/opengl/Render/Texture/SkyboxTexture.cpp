@@ -130,7 +130,7 @@ void SkyboxTexture::loadTextureOnMemory(const std::string& fileName, Direction d
     /* load the mipmaps */
     for (unsigned int level = 0; level < mipMapCount && (width || height); ++level)
     {
-        std::cout << "SkyboxTexture::loadTextureOnMemory fileName:" << fileName << " target:" << GL_TEXTURE_CUBE_MAP_POSITIVE_X + direction << std::endl;
+//        std::cout << "SkyboxTexture::loadTextureOnMemory fileName:" << fileName << " target:" << GL_TEXTURE_CUBE_MAP_POSITIVE_X + direction << std::endl;
         unsigned int size = ((width+3)/4)*((height+3)/4)*blockSize;
         glCompressedTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + direction, level, format, width, height,
                                0, size, buffer + offset);

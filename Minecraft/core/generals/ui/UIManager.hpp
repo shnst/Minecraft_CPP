@@ -25,7 +25,7 @@ class UIManager: Updatable, public Singleton<UIManager> {
 public:
     ~UIManager();
     
-    void update() override;
+    void update(double delta) override;
     void handleTouchEvent(const TouchEvent& touchEvent);
     void addNewBaseUI(UIBaseView*);
     void clearAllBaseUI();

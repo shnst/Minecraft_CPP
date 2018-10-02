@@ -19,12 +19,10 @@ public:
     ~Skybox();
     
     
-    void update() override;
-    const vec3d& getCoords() const;
+    void update(double delta) override;
     double getSize() const;
 private:
     const double size;
-    vec3d coords;
 };
 
 #endif /* Skybox_hpp */

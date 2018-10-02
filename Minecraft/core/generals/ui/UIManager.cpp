@@ -22,7 +22,7 @@ UIManager::UIManager()
 UIManager::~UIManager() {
 }
 
-void UIManager::update() {
+void UIManager::update(double delta) {
     for (auto it=baseViews.begin(); it!=baseViews.end();) {
         if ((*it)->isClosed()) {
             Utils::SafeDelete(*it);

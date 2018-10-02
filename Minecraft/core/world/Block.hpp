@@ -32,6 +32,17 @@ namespace Blocks{
         switch (type) {
             case Air:
             case Glass:
+            case Water:
+                return true;
+            default:
+                return false;
+        }
+    }
+    
+    static bool isPassable(Types type) {
+        switch (type) {
+            case Air:
+            case Water:
                 return true;
             default:
                 return false;

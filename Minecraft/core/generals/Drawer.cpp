@@ -14,7 +14,6 @@
 
 Drawer::Drawer()
 {
-    
 }
 
 Drawer::~Drawer() {}

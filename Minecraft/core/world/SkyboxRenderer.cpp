@@ -23,7 +23,6 @@
 #include "Camera.hpp"
 #include "GameContext.hpp"
 #include "Mesh.hpp"
-#include "ResourceManager.hpp"
 #include "Skybox.hpp"
 #include "SkyboxTexture.hpp"
 #include "Shader.hpp"
@@ -32,6 +31,8 @@
 SkyboxRenderer::SkyboxRenderer()
 {
     mesh = new Mesh();
+    
+    shader = new Shader("skybox", {"MVP", "sampler"}, {});
     
     texture = new SkyboxTexture();
     texture->load("skybox");
@@ -43,71 +44,69 @@ SkyboxRenderer::SkyboxRenderer()
 SkyboxRenderer::~SkyboxRenderer() {
     Utils::SafeDelete(mesh);
     Utils::SafeDelete(texture);
+    Utils::SafeDelete(shader);
 }
 
 void SkyboxRenderer::createMesh(const Skybox& skybox) {
-    auto coord = skybox.getCoords();
     auto size = skybox.getSize();
     
-    std::cout << "SkyboxRenderer::createMesh x:" << coord.x << " y:" << coord.y << " size:" << size << std::endl;
+//    std::cout << "SkyboxRenderer::createMesh x:" << coord.x << " y:" << coord.y << " size:" << size << std::endl;
     
     mesh->vertices.clear();
     mesh->textureCoords.clear();
 
     // side2
     mesh->addFace(
-                  coord.x + size, coord.y + size, coord.z - size,
-                  coord.x + size, coord.y + size, coord.z + size,
-                  coord.x + size, coord.y - size, coord.z - size,
-                  coord.x + size, coord.y - size, coord.z + size,
+                  size, size, -size,
+                  size, size, size,
+                  size, - size, -size,
+                  size, - size, size,
                   1.0, 1.0, 1.0, 1.0);
-    
-    
 
     // side4
     mesh->addFace(
-                       coord.x - size, coord.y + size, coord.z + size,
-                       coord.x - size, coord.y + size, coord.z - size,
-                       coord.x - size, coord.y - size, coord.z + size ,
-                       coord.x - size, coord.y - size, coord.z - size,
+                       - size, size, size,
+                       - size, size, - size,
+                       - size, - size, size ,
+                       - size, - size, - size,
                        1.0, 1.0, 1.0, 1.0);
     
     // top
     mesh->addFace(
-                  coord.x - size, coord.y + size, coord.z - size,
-                  coord.x - size, coord.y + size, coord.z + size,
-                  coord.x + size, coord.y + size, coord.z - size,
-                  coord.x + size, coord.y + size, coord.z + size,
+                  - size, size, - size,
+                  - size, size, size,
+                  size, size, - size,
+                  size, size, size,
                   1.0, 1.0, 1.0, 1.0);
 
 
     // bottom
     mesh->addFace(
-                       coord.x - size, coord.y - size, coord.z + size,
-                       coord.x + size, coord.y - size, coord.z + size,
-                       coord.x - size, coord.y - size, coord.z - size,
-                       coord.x + size, coord.y - size, coord.z - size,
+                       - size, - size, size,
+                       size, - size, size,
+                       - size, - size, - size,
+                       size, - size, - size,
                        1.0, 1.0, 1.0, 1.0);
 
     // side3
     mesh->addFace(
-                  coord.x + size, coord.y + size, coord.z + size,
-                  coord.x - size, coord.y + size, coord.z + size,
-                  coord.x + size, coord.y - size, coord.z + size,
-                  coord.x - size, coord.y - size, coord.z + size,
+                  size, size, size,
+                  - size, size, size,
+                  size, - size, size,
+                  - size, - size, size,
                   1.0, 1.0, 1.0, 1.0);
 
     // side1
     mesh->addFace(
-                       coord.x - size, coord.y + size, coord.z - size,
-                       coord.x + size, coord.y + size, coord.z - size,
-                       coord.x - size, coord.y - size, coord.z - size,
-                       coord.x + size, coord.y - size, coord.z - size,
+                       - size, size, - size,
+                       size, size, - size,
+                       - size, - size, - size,
+                       size, - size, - size,
                        1.0, 1.0, 1.0, 1.0);
 }
 
-void SkyboxRenderer::render(const Skybox& skybox) {
-    std::cout << "SkyboxRenderer::render vertices:" << mesh->vertices.size() / 3 << std::endl;
+void SkyboxRenderer::render(const Camera& camera, const Skybox& skybox) {
+//    std::cout << "SkyboxRenderer::render vertices:" << mesh->vertices.size() / 3 << std::endl;
     
     static bool hasMeshCreated = false;
     if (!hasMeshCreated) {
@@ -115,12 +114,10 @@ void SkyboxRenderer::render(const Skybox& skybox) {
         hasMeshCreated = true;
     }
 
-    auto shader = ResourceManager::get().getShader("skybox");
     // Use our shader
     shader->use();
 
-    auto camera = GameContext::get().getCamera();
-    glUniformMatrix4fv(shader->getUniform("MVP"), 1, GL_FALSE, &camera->getMVPMatrix()[0][0]);
+    glUniformMatrix4fv(shader->getUniform("MVP"), 1, GL_FALSE, &camera.getMVPMatrixForCubeMap()[0][0]);
 
     GLuint vao;
     glGenVertexArrays(1, &vao);

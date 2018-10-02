@@ -13,14 +13,14 @@
 
 class Chunk;
 class PerlinNoise;
-class World;
+class ChunkManager;
 
 class TerrainGenerator {
 public:
     TerrainGenerator();
     ~TerrainGenerator();
     
-    void generate(World& world, const std::vector<std::vector<std::vector<Chunk*>>>& chunks);
+    void generate(ChunkManager& chunkManager, Chunk& chunk);
 private:
     void initializeNoises();
     

@@ -21,7 +21,7 @@ public:
     /**
      * Update function. Classes those inherits Updatable need to override.
      */
-    virtual void update() = 0;
+    virtual void update(double delta) = 0;
     
     void setHasUpdatedInThisFrame(bool hasUpdatedInThisFrame);
     bool hasUpdatedInThisFrame() const;

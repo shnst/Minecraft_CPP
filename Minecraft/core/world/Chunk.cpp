@@ -9,10 +9,13 @@
 #include "Chunk.hpp"
 
 #include <iostream>
+#include <sstream>
+
+#include "Utils.hpp"
 
 
-Chunk::Chunk(const vec3n& coords)
-:coords(coords)
+Chunk::Chunk(const vec3n& coord)
+:coord(coord)
 {
     for (auto xIt=blocks.begin(); xIt!=blocks.end(); ++xIt) {
         for (auto yIt=(*xIt).begin(); yIt!=(*xIt).end(); ++yIt) {
@@ -31,8 +34,8 @@ const std::array<std::array<std::array<Blocks::Types, NUMBER_OF_BLOCKS_IN_CHUNK_
     return blocks;
 }
 
-const vec3n& Chunk::getCoords() const {
-    return coords;
+const vec3n& Chunk::getCoord() const {
+    return coord;
 }
 
 bool Chunk::isBlocked(int x, int y, int z) const {
@@ -70,4 +73,38 @@ void Chunk::setBlock(int x, int y, int z, Blocks::Types blockType) {
 
 bool Chunk::hasNoised() const {
     return noised;
+}
+
+std::string Chunk::serializeBlocks() const {
+    std::stringstream blockData;
+    for (int x=0; x<NUMBER_OF_BLOCKS_IN_CHUNK_X; ++x) {
+        for (int y=0; y<NUMBER_OF_BLOCKS_IN_CHUNK_Y; ++y) {
+            for (int z=0; z<NUMBER_OF_BLOCKS_IN_CHUNK_Z; ++z) {
+                if (x == 0 && y == 0 && z == 0) {
+                    blockData << blocks[x][y][z];
+                } else {
+                    blockData << "," << blocks[x][y][z];
+                }
+            }
+        }
+    }
+    return blockData.str();
+}
+
+bool Chunk::deserializeBlocks(const std::string& serializedString) {
+    std::vector<std::string> splittedStrings;
+    Utils::split(splittedStrings, serializedString, ",");
+    
+    if (splittedStrings.size() != NUMBER_OF_BLOCKS_IN_CHUNK_X * NUMBER_OF_BLOCKS_IN_CHUNK_Y * NUMBER_OF_BLOCKS_IN_CHUNK_Z) {
+        return false;
+    }
+    
+    for (int x=0; x<NUMBER_OF_BLOCKS_IN_CHUNK_X; ++x) {
+        for (int y=0; y<NUMBER_OF_BLOCKS_IN_CHUNK_Y; ++y) {
+            for (int z=0; z<NUMBER_OF_BLOCKS_IN_CHUNK_Z; ++z) {
+                blocks[x][y][z] = static_cast<Blocks::Types>(std::stoi(splittedStrings[(x * NUMBER_OF_BLOCKS_IN_CHUNK_X + y) * NUMBER_OF_BLOCKS_IN_CHUNK_Z + z]));
+            }
+        }
+    }
+    return true;
 }

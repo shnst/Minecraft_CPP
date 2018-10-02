@@ -25,7 +25,7 @@ public:
     /**
      * This function should be called from platform dependent update callback
      */
-    void update(bool isContinuing);
+    void update(double delta, bool isContinuing);
     
     /**
      * Automatically called when a updatable object is created. Don't call this function by yourself.

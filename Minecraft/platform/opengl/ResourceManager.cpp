@@ -43,27 +43,7 @@ ResourceManager::~ResourceManager() {
 }
 
 void ResourceManager::loadShader(const std::string& name, const std::vector<std::string>& uniforms, const std::vector<std::string>&  attributes) {
-    //     Create and compile our GLSL program from the shaders
-    unsigned int shaderID = LoadShaders((name+".vert").c_str(), (name+".frag").c_str());
-    
-    if (shaderID == -1) {
-        std::cout << "failed to load shader:" << name << std::endl;
-        return;
-    }
-    
-    auto shader = new Shader();
-    shader->id = shaderID;
-    
-    // Get a handle for our "MVP" uniform
-    for (auto it=uniforms.begin(); it!=uniforms.end(); ++it) {
-        shader->uniformID[(*it)] = glGetUniformLocation(shaderID, (*it).c_str());
-    }
-    
-    for (auto it=attributes.begin(); it!=attributes.end(); ++it) {
-        shader->attributeID[(*it)] = glGetUniformLocation(shaderID, (*it).c_str());
-    }
-    
-    shaders[name] = shader;
+    shaders[name] = new Shader(name, uniforms, attributes);
 }
 
 void ResourceManager::loadTexture(const std::string& name) {

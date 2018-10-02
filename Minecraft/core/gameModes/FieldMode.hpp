@@ -23,7 +23,7 @@ public:
     void start() override;
     void pause(bool isPaused) override;
     void quit() override;
-    void handleKeyboardInput(Keyboard::Types key) override;
+    void handleInput(const Input::Data& inputData) override;
 private:
     World* world;
 };

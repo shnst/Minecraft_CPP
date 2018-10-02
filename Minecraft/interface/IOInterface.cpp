@@ -22,10 +22,10 @@ void IOInterface::drawText(double x, double y, const std::string& text, Color::T
 }
 
 void IOInterface::keyboardInput(Keyboard::Types input) {
-    auto gameMode = GameContext::get().getGameMode();
-    if (gameMode != nullptr) {
-        gameMode->handleKeyboardInput(input);
-    }
+//    auto gameMode = GameContext::get().getGameMode();
+//    if (gameMode != nullptr) {
+//        gameMode->handleInput(input);
+//    }
 }
 
 void IOInterface::changeWindowSize(int width, int height) {

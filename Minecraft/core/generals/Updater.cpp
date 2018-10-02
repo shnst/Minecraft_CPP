@@ -19,7 +19,7 @@ Updater::Updater()
 
 Updater::~Updater() {}
 
-void Updater::update(bool isContinuing)  {
+void Updater::update(double delta, bool isContinuing)  {
     if (!isContinuing) {
         for (auto it=items.begin(); it!=items.end(); ++it) {
             (*it)->setHasUpdatedInThisFrame(false);
@@ -33,12 +33,12 @@ void Updater::update(bool isContinuing)  {
         (*it)->setHasUpdatedInThisFrame(true);
         
         if (!(*it)->isPaused()) {
-            (*it)->update();
+            (*it)->update(delta);
         }
         
         if (hasNumberOfRegisteredItemsChanged) {
             hasNumberOfRegisteredItemsChanged = false;
-            update(true);
+            update(delta, true);
             return;
         }
     }

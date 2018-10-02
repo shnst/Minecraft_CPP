@@ -13,6 +13,8 @@
  * Utils.hpp defines utility functions that are used from entire project.
  */
 #include <cmath>
+#include <string>
+#include <vector>
 
 namespace Utils {
     /**
@@ -32,6 +34,20 @@ namespace Utils {
     //  This function converts radians to decimal degrees
     static inline double radianToDegree(double rad) {
         return (rad * 180 / M_PI);
+    }
+    
+    /**
+     * splits string
+     */
+    inline void split(std::vector<std::string>& v, const std::string& input_string, const std::string& delimiter) {
+        std::string::size_type index = input_string.find_first_of(delimiter);
+        
+        if (index != std::string::npos) {
+            v.push_back(input_string.substr(0, index));
+            split(v, input_string.substr(index + 1), delimiter);
+        } else {
+            v.push_back(input_string);
+        }
     }
 }
 

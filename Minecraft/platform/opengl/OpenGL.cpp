@@ -34,22 +34,43 @@ using namespace glm;
 #include "Updater.hpp"
 
 void keyboardInput(GLFWwindow* window, int key, int scancode, int action, int mods) {
-    auto camera = GameContext::get().getCamera();
+//    auto camera = GameContext::get().getCamera();
+//    switch (key) {
+//        case GLFW_KEY_W:
+//            camera->forward();
+//            break;
+//        case GLFW_KEY_A:
+//            camera->left();
+//            break;
+//        case GLFW_KEY_S:
+//            camera->back();
+//            break;
+//        case GLFW_KEY_D:
+//            camera->right();
+//            break;
+//        default: break;
+//    }
+    
+    auto input = Input::Data();
     switch (key) {
         case GLFW_KEY_W:
-            camera->forward();
+            input.addKeyboardEvent(Keyboard::W);
             break;
         case GLFW_KEY_A:
-            camera->left();
+            input.addKeyboardEvent(Keyboard::A);
             break;
         case GLFW_KEY_S:
-            camera->back();
+            input.addKeyboardEvent(Keyboard::S);
             break;
         case GLFW_KEY_D:
-            camera->right();
+            input.addKeyboardEvent(Keyboard::D);
+            break;
+        case GLFW_KEY_SPACE:
+            input.addKeyboardEvent(Keyboard::SPACE);
             break;
         default: break;
     }
+    GameContext::get().handleInput(input);
 }
 
 static void mouseInput(GLFWwindow* window, double x, double y) {
@@ -59,14 +80,29 @@ static void mouseInput(GLFWwindow* window, double x, double y) {
 //        return;
     }
     
-    auto camera = GameContext::get().getCamera();
+//    auto camera = GameContext::get().getCamera();
     
-    camera->mouseInput(x, y);
+//    camera->mouseInput(x, y);
+    
+    auto input = Input::Data();
+    input.addMouseMoveEvent(x, y);
+    GameContext::get().handleInput(input);
     
     auto windowSize = getWindowSize();
     didSetPosition = true;
 //    glfwSetCursorPos(window, windowSize.width/2, windowSize.height/2);
     
+}
+
+static void mouseButtonInput(GLFWwindow* window, int button, int action, int mods) {
+    auto input = Input::Data();
+    if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS) {
+        input.addMouseButtonEvent(MouseButton::Right);
+    }
+    if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
+        input.addMouseButtonEvent(MouseButton::Left);
+    }
+    GameContext::get().handleInput(input);
 }
 
 
@@ -113,17 +149,7 @@ bool OpenGL::setup(int windowWidth, int windowHeight, const std::string& windowN
     
     glfwSetCursorPosCallback(window, mouseInput);
     glfwSetKeyCallback(window, keyboardInput);
-    
-    ResourceManager::get().loadShader("test", {"MVP", "sampler"}, {});
-//    ResourceManager::get().loadTexture("blocks.dds");
-    ResourceManager::get().loadShader("skybox", {"MVP", "sampler"}, {});
-//    ResourceManager::get().loadTexture("skybox_up.dds");
-//    ResourceManager::get().loadTexture("skybox_bottom.dds");
-//    ResourceManager::get().loadTexture("skybox_side1.dds");
-//    ResourceManager::get().loadTexture("skybox_side2.dds");
-//    ResourceManager::get().loadTexture("skybox_side3.dds");
-//    ResourceManager::get().loadTexture("skybox_side4.dds");
-    
+    glfwSetMouseButtonCallback(window, mouseButtonInput);
     return true;
 }
 
@@ -141,7 +167,7 @@ void OpenGL::run() {
 }
 
 void OpenGL::update() {
-    Updater::get().update(false);
+    Updater::get().update(0.0333333333, false);
 }
 
 void OpenGL::render() {

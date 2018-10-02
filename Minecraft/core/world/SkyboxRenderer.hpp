@@ -11,10 +11,11 @@
 
 #include <array>
 
+class Camera;
 class Mesh;
+class Shader;
 class Skybox;
 class Texture;
-class Shader;
 
 class SkyboxRenderer {
 public:
@@ -22,7 +23,7 @@ public:
     ~SkyboxRenderer();
     
     void createMesh(const Skybox& skybox);
-    void render(const Skybox& skybox);
+    void render(const Camera& camera, const Skybox& skybox);
 private:
     Mesh* mesh;
     Texture* texture;
