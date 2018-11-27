@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B12DEBC3212529E1004B7F6A"
-               BuildableName = "Minecraft_CPP"
-               BlueprintName = "Minecraft_CPP"
+               BuildableName = "Mobile_Slam_CPP"
+               BlueprintName = "Mobile_Slam_CPP"
                ReferencedContainer = "container:Minecraft_CPP.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B12DEBC3212529E1004B7F6A"
-            BuildableName = "Minecraft_CPP"
-            BlueprintName = "Minecraft_CPP"
+            BuildableName = "Mobile_Slam_CPP"
+            BlueprintName = "Mobile_Slam_CPP"
             ReferencedContainer = "container:Minecraft_CPP.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -56,8 +56,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B12DEBC3212529E1004B7F6A"
-            BuildableName = "Minecraft_CPP"
-            BlueprintName = "Minecraft_CPP"
+            BuildableName = "Mobile_Slam_CPP"
+            BlueprintName = "Mobile_Slam_CPP"
             ReferencedContainer = "container:Minecraft_CPP.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -75,8 +75,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B12DEBC3212529E1004B7F6A"
-            BuildableName = "Minecraft_CPP"
-            BlueprintName = "Minecraft_CPP"
+            BuildableName = "Mobile_Slam_CPP"
+            BlueprintName = "Mobile_Slam_CPP"
             ReferencedContainer = "container:Minecraft_CPP.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

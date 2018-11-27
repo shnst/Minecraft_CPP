@@ -40,10 +40,7 @@ void TerrainGenerator::initializeNoises() {
 }
 
 void TerrainGenerator::generate(ChunkManager& chunkManager, Chunk& chunk) {
-    auto worldHeight = NUMBER_OF_CHUNKS_IN_WORLD_Y * NUMBER_OF_BLOCKS_IN_CHUNK_Y;
-    
-    auto worldWidth1 = NUMBER_OF_CHUNKS_IN_WORLD_X * NUMBER_OF_BLOCKS_IN_CHUNK_X;
-    auto worldWidth2 = NUMBER_OF_CHUNKS_IN_WORLD_Z * NUMBER_OF_BLOCKS_IN_CHUNK_Z;
+    auto worldHeight = WORLD_HEIGHT * NUMBER_OF_BLOCKS_IN_CHUNK_Y;
     
     std::mt19937 randomGenerator(Time::now_ms());
     std::uniform_int_distribution<int> random(0, 1000);
@@ -61,8 +58,11 @@ void TerrainGenerator::generate(ChunkManager& chunkManager, Chunk& chunk) {
     
     for (int x=0; x<xSize; ++x) {
         for (int z=0; z<zSize; ++z) {
-            auto perlinX = (offsetX + x) / static_cast<double>(worldWidth1) * 15 * NUMBER_OF_CHUNKS_IN_WORLD_X / 20;
-            auto perlinZ = (offsetZ + z) / static_cast<double>(worldWidth2) * 15 * NUMBER_OF_CHUNKS_IN_WORLD_Z / 20;
+            double perlinX = (x + offsetX) / 10.0;
+            double perlinZ = (z + offsetZ) / 10.0;
+            
+//            std::cout << "Perlin x:" << perlinX << " z:" << perlinZ << std::endl;
+            
             auto noiseForGrass = noises.front()->noise(perlinX, perlinZ, 0.3);
             auto noiseForStone = noises[1]->noise(perlinX, perlinZ, 0.4);
             
@@ -119,6 +119,4 @@ void TerrainGenerator::generate(ChunkManager& chunkManager, Chunk& chunk) {
             }
         }
     }
-    
-    std::cout << "end" << std::endl;
 }

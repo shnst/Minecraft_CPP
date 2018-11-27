@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Minecraft/platform/opengl/Render/Shader/Shader.cpp"
-            timestampString = "556363577.100843"
+            filePath = "Minecraft/core/world/Chunk.cpp"
+            timestampString = "564637224.013466"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "Shader::Shader(const std::string&amp; programName, const std::vector&lt;std::string&gt;&amp; uniforms, const std::vector&lt;std::string&gt;&amp; attributes)"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "Chunk::createMesh(const ChunkManager&amp; chunkManager)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -34,23 +34,6 @@ using namespace glm;
 #include "Updater.hpp"
 
 void keyboardInput(GLFWwindow* window, int key, int scancode, int action, int mods) {
-//    auto camera = GameContext::get().getCamera();
-//    switch (key) {
-//        case GLFW_KEY_W:
-//            camera->forward();
-//            break;
-//        case GLFW_KEY_A:
-//            camera->left();
-//            break;
-//        case GLFW_KEY_S:
-//            camera->back();
-//            break;
-//        case GLFW_KEY_D:
-//            camera->right();
-//            break;
-//        default: break;
-//    }
-    
     auto input = Input::Data();
     switch (key) {
         case GLFW_KEY_W:
@@ -80,10 +63,6 @@ static void mouseInput(GLFWwindow* window, double x, double y) {
 //        return;
     }
     
-//    auto camera = GameContext::get().getCamera();
-    
-//    camera->mouseInput(x, y);
-    
     auto input = Input::Data();
     input.addMouseMoveEvent(x, y);
     GameContext::get().handleInput(input);
@@ -91,7 +70,6 @@ static void mouseInput(GLFWwindow* window, double x, double y) {
     auto windowSize = getWindowSize();
     didSetPosition = true;
 //    glfwSetCursorPos(window, windowSize.width/2, windowSize.height/2);
-    
 }
 
 static void mouseButtonInput(GLFWwindow* window, int button, int action, int mods) {
@@ -108,10 +86,9 @@ static void mouseButtonInput(GLFWwindow* window, int button, int action, int mod
 
 bool OpenGL::setup(int windowWidth, int windowHeight, const std::string& windowName) {
     // Initialise GLFW
-    if( !glfwInit() )
-    {
+    if( !glfwInit() ) {
         fprintf( stderr, "Failed to initialize GLFW\n" );
-        return -1;
+        return false;
     }
     
     glfwWindowHint(GLFW_SAMPLES, 4);
@@ -125,7 +102,7 @@ bool OpenGL::setup(int windowWidth, int windowHeight, const std::string& windowN
     if( window == NULL ){
         fprintf( stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n" );
         glfwTerminate();
-        return -1;
+        return false;
     }
     glfwMakeContextCurrent(window);
     
@@ -133,7 +110,7 @@ bool OpenGL::setup(int windowWidth, int windowHeight, const std::string& windowN
     glewExperimental = true; // Needed for core profile
     if (glewInit() != GLEW_OK) {
         fprintf(stderr, "Failed to initialize GLEW\n");
-        return -1;
+        return false;
     }
     
     // Ensure we can capture the escape key being pressed below

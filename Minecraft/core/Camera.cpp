@@ -24,11 +24,11 @@
 #include "Coordinates.hpp"
 
 Camera::Camera()
-:position(4, 3, 3)
+:position(4, 100, 3)
 ,up(0, 1, 0)
 ,lookat(0, 0, 0)
 ,skyboxLookat(0, 0, 0)
-,skyboxOrigin(1, 1, 1)
+,skyboxOrigin(position)
 ,previousMouseX(-1)
 ,previousMouseY(-1)
 {
@@ -96,6 +96,10 @@ void Camera::setLookat(const vec3d& lookat) {
     this->lookat.x = lookat.x;
     this->lookat.y = lookat.y;
     this->lookat.z = lookat.z;
+    
+    skyboxLookat.x = skyboxOrigin.x + (lookat.x - position.x);
+    skyboxLookat.y = skyboxOrigin.y + (lookat.y - position.y);
+    skyboxLookat.z = skyboxOrigin.z + (lookat.z - position.z);
 }
 
 const glm::vec3& Camera::getPosition() const {
@@ -142,27 +146,29 @@ glm::mat4 Camera::getMVPMatrixForCubeMap() const {
     return projection * view * model; // Remember, matrix multiplication is the other way around
 }
 
+const float KEYBOARD_MOVEMENT_SPEED = 0.8f;
+
 void Camera::forward() {
     std::cout << "Camera::forward distance:" << glm::distance(lookat, position) << std::endl;
-    auto delta = glm::normalize(lookat-position) * 0.4f;
+    auto delta = glm::normalize(lookat-position) * KEYBOARD_MOVEMENT_SPEED;
     position += delta;
     lookat += delta;
 }
 
 void Camera::back() {
-    auto delta = glm::normalize(lookat-position) * 0.4f;
+    auto delta = glm::normalize(lookat-position) * KEYBOARD_MOVEMENT_SPEED;
     position -= delta;
     lookat -= delta;
 }
 
 void Camera::left() {
-    auto delta = glm::cross(glm::normalize(lookat-position), up) * 0.4f;
+    auto delta = glm::cross(glm::normalize(lookat-position), up) * KEYBOARD_MOVEMENT_SPEED;
     position -= delta;
     lookat -= delta;
 }
 
 void Camera::right() {
-    auto delta = glm::cross(glm::normalize(lookat-position), up) * 0.4f;
+    auto delta = glm::cross(glm::normalize(lookat-position), up) * KEYBOARD_MOVEMENT_SPEED;
     position += delta;
     lookat += delta;
 }

@@ -9,7 +9,7 @@
 #ifndef Vector2d_hpp
 #define Vector2d_hpp
 
-#include <math.h>
+#include <cmath>
 
 /**
  * 2 dimentional vector class which contains a lot of convenient vector related calculations.
@@ -117,18 +117,18 @@ public:
         return *this;
     }
     
-    float distance(vec2 v) const {
+    float distance(const vec2& v) const {
         vec2 d(v.x - x, v.y - y);
         return d.length();
     }
     
-    float sqrDistance(vec2 v) const {
+    float sqrDistance(const vec2& v) const {
         vec2 d(v.x - x, v.y - y);
         return d.sqrLength();
     }
     
     float length() const {
-        return sqrtf(x * x + y * y);
+        return std::sqrt(x * x + y * y);
     }
     
     float sqrLength() const {
@@ -145,10 +145,10 @@ public:
         return vec2(y, -x);
     }
     
-    static float dot(vec2 v1, vec2 v2) {
+    static float dot(const vec2& v1, const vec2& v2) {
         return v1.x * v2.x + v1.y * v2.y;
     }
-    static float cross(vec2 v1, vec2 v2) {
+    static float cross(const vec2& v1, const vec2& v2) {
         return (v1.x * v2.y) - (v1.y * v2.x);
     }
     

@@ -17,7 +17,6 @@
 		B12DEBD221252A17004B7F6A /* libglfw.3.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B12DEBD121252A17004B7F6A /* libglfw.3.2.dylib */; };
 		B12DEBD521252A6A004B7F6A /* ShaderHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEBD321252A6A004B7F6A /* ShaderHelper.cpp */; };
 		B12DEBD821252AB1004B7F6A /* TextureHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEBD621252AB1004B7F6A /* TextureHelper.cpp */; };
-		B12DEBDA21252B2C004B7F6A /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B12DEBD921252B2C004B7F6A /* OpenGL.framework */; };
 		B12DEBE921252D6E004B7F6A /* Chunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEBE721252D6E004B7F6A /* Chunk.cpp */; };
 		B12DEBF021252EA5004B7F6A /* test.frag in CopyFiles */ = {isa = PBXBuildFile; fileRef = B12DEBEF21252E96004B7F6A /* test.frag */; };
 		B12DEBF121252EA5004B7F6A /* test.vert in CopyFiles */ = {isa = PBXBuildFile; fileRef = B12DEBEE21252E96004B7F6A /* test.vert */; };
@@ -50,6 +49,7 @@
 		B12DEC8A21261572004B7F6A /* TerrainGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEC8821261572004B7F6A /* TerrainGenerator.cpp */; };
 		B12DEC8E21267DB5004B7F6A /* Skybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEC8C21267DB5004B7F6A /* Skybox.cpp */; };
 		B12DEC9121267E12004B7F6A /* SkyboxRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12DEC8F21267E12004B7F6A /* SkyboxRenderer.cpp */; };
+		B1331D9821A551EB00BD2F6B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B12DEBD921252B2C004B7F6A /* OpenGL.framework */; };
 		B172F6BF2138B4E6006E773F /* ChunkManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B172F6BD2138B4E6006E773F /* ChunkManager.cpp */; };
 		B172F6C82138BDAE006E773F /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = B172F6C62138BDAE006E773F /* sqlite3.c */; };
 		B172F6CB2138BE53006E773F /* DBSqlite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B172F6C92138BE53006E773F /* DBSqlite.cpp */; };
@@ -59,6 +59,8 @@
 		B1B1D67521288DB800D46006 /* AABB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1B1D67321288DB800D46006 /* AABB.cpp */; };
 		B1B1D6782128E80A00D46006 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1B1D6762128E80A00D46006 /* Player.cpp */; };
 		B1B1D680212926D900D46006 /* InputHandleable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1B1D67F212926D900D46006 /* InputHandleable.cpp */; };
+		B1B5F64B2196325700DF3C1E /* UDP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1B5F6492196325700DF3C1E /* UDP.cpp */; };
+		B1B5F6962196680700DF3C1E /* JsonParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1B5F6942196680700DF3C1E /* JsonParser.cpp */; };
 		B1BF9C4D2126BC840017E26F /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1BF9C4B2126BC840017E26F /* Entity.cpp */; };
 		B1BF9C582127737E0017E26F /* SkyboxTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1BF9C562127737E0017E26F /* SkyboxTexture.cpp */; };
 		B1BF9C5C21277E0F0017E26F /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1BF9C5A21277E0F0017E26F /* Texture.cpp */; };
@@ -67,6 +69,8 @@
 		B1BF9C6E2127ACF60017E26F /* skybox_top.dds in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1BF9C6D2127ACF10017E26F /* skybox_top.dds */; };
 		B1BF9C742127B4890017E26F /* skybox.frag in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1BF9C722127B47D0017E26F /* skybox.frag */; };
 		B1BF9C752127B4890017E26F /* skybox.vert in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1BF9C732127B47D0017E26F /* skybox.vert */; };
+		B1DA28DD219F8F9D0013AA21 /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1DA28DB219F8F9D0013AA21 /* Plane.cpp */; };
+		B1DA28E0219F8FB90013AA21 /* MapProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1DA28DE219F8FB90013AA21 /* MapProcessor.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -98,7 +102,7 @@
 		B121558B2126987100E1012C /* skybox_side3.dds */ = {isa = PBXFileReference; lastKnownFileType = file; path = skybox_side3.dds; sourceTree = "<group>"; };
 		B121558C2126987100E1012C /* skybox_side1.dds */ = {isa = PBXFileReference; lastKnownFileType = file; path = skybox_side1.dds; sourceTree = "<group>"; };
 		B121558D2126987100E1012C /* skybox_side2.dds */ = {isa = PBXFileReference; lastKnownFileType = file; path = skybox_side2.dds; sourceTree = "<group>"; };
-		B12DEBC4212529E1004B7F6A /* Minecraft_CPP */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Minecraft_CPP; sourceTree = BUILT_PRODUCTS_DIR; };
+		B12DEBC4212529E1004B7F6A /* Mobile_Slam_CPP */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Mobile_Slam_CPP; sourceTree = BUILT_PRODUCTS_DIR; };
 		B12DEBC7212529E1004B7F6A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B12DEBCF21252A05004B7F6A /* libGLEW.2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.1.0.dylib; path = ../../../../usr/local/Cellar/glew/2.1.0/lib/libGLEW.2.1.0.dylib; sourceTree = "<group>"; };
 		B12DEBD121252A17004B7F6A /* libglfw.3.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.2.dylib; path = ../../../../usr/local/Cellar/glfw/3.2.1/lib/libglfw.3.2.dylib; sourceTree = "<group>"; };
@@ -203,6 +207,11 @@
 		B1B1D67A2129013800D46006 /* InputHandleable.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InputHandleable.hpp; sourceTree = "<group>"; };
 		B1B1D67D212907B000D46006 /* MouseButton.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MouseButton.hpp; sourceTree = "<group>"; };
 		B1B1D67F212926D900D46006 /* InputHandleable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = InputHandleable.cpp; sourceTree = "<group>"; };
+		B1B5F6492196325700DF3C1E /* UDP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UDP.cpp; sourceTree = "<group>"; };
+		B1B5F64A2196325700DF3C1E /* UDP.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UDP.hpp; sourceTree = "<group>"; };
+		B1B5F6932196680700DF3C1E /* JsonParser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = JsonParser.hpp; sourceTree = "<group>"; };
+		B1B5F6942196680700DF3C1E /* JsonParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JsonParser.cpp; sourceTree = "<group>"; };
+		B1B5F6952196680700DF3C1E /* picojson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = picojson.h; sourceTree = "<group>"; };
 		B1BF9C4B2126BC840017E26F /* Entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
 		B1BF9C4C2126BC840017E26F /* Entity.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Entity.hpp; sourceTree = "<group>"; };
 		B1BF9C562127737E0017E26F /* SkyboxTexture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SkyboxTexture.cpp; sourceTree = "<group>"; };
@@ -216,6 +225,10 @@
 		B1BF9C6D2127ACF10017E26F /* skybox_top.dds */ = {isa = PBXFileReference; lastKnownFileType = file; path = skybox_top.dds; sourceTree = "<group>"; };
 		B1BF9C722127B47D0017E26F /* skybox.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = skybox.frag; sourceTree = "<group>"; };
 		B1BF9C732127B47D0017E26F /* skybox.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = skybox.vert; sourceTree = "<group>"; };
+		B1DA28DB219F8F9D0013AA21 /* Plane.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Plane.cpp; path = Minecraft/core/world/Plane.cpp; sourceTree = SOURCE_ROOT; };
+		B1DA28DC219F8F9D0013AA21 /* Plane.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Plane.hpp; path = Minecraft/core/world/Plane.hpp; sourceTree = SOURCE_ROOT; };
+		B1DA28DE219F8FB90013AA21 /* MapProcessor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MapProcessor.cpp; sourceTree = "<group>"; };
+		B1DA28DF219F8FB90013AA21 /* MapProcessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MapProcessor.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,7 +236,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B12DEBDA21252B2C004B7F6A /* OpenGL.framework in Frameworks */,
+				B1331D9821A551EB00BD2F6B /* OpenGL.framework in Frameworks */,
 				B12DEBD221252A17004B7F6A /* libglfw.3.2.dylib in Frameworks */,
 				B12DEBD021252A05004B7F6A /* libGLEW.2.1.0.dylib in Frameworks */,
 			);
@@ -244,7 +257,7 @@
 		B12DEBC5212529E1004B7F6A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B12DEBC4212529E1004B7F6A /* Minecraft_CPP */,
+				B12DEBC4212529E1004B7F6A /* Mobile_Slam_CPP */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -292,6 +305,7 @@
 		B12DEBEC21252D95004B7F6A /* core */ = {
 			isa = PBXGroup;
 			children = (
+				B1B5F648219631E400DF3C1E /* udp */,
 				B172F6C02138BCDB006E773F /* database */,
 				B12DEC0321253132004B7F6A /* generals */,
 				B12DEC4C21253DA6004B7F6A /* ui */,
@@ -331,6 +345,7 @@
 		B12DEC0321253132004B7F6A /* generals */ = {
 			isa = PBXGroup;
 			children = (
+				B1B5F692219667E600DF3C1E /* json */,
 				B17AEA0D212AA2C200C07259 /* physics */,
 				B17AEA09212A92D600C07259 /* library */,
 				B12DEC1221253167004B7F6A /* ui */,
@@ -414,8 +429,8 @@
 		B12DEC4C21253DA6004B7F6A /* ui */ = {
 			isa = PBXGroup;
 			children = (
-				B12DEC4E21253DA6004B7F6A /* UIGameMenuWindow.hpp */,
 				B12DEC4F21253DA6004B7F6A /* UIGameMenuWindow.cpp */,
+				B12DEC4E21253DA6004B7F6A /* UIGameMenuWindow.hpp */,
 				B12DEC4D21253DA6004B7F6A /* UITitleScreen.cpp */,
 				B12DEC5021253DA6004B7F6A /* UITitleScreen.hpp */,
 			);
@@ -425,6 +440,7 @@
 		B12DEC5321253DC0004B7F6A /* world */ = {
 			isa = PBXGroup;
 			children = (
+				B1DA28DA219F8F8F0013AA21 /* processing */,
 				B12DEC5D212555B5004B7F6A /* Block.hpp */,
 				B12DEC5921254E8D004B7F6A /* Mesh.hpp */,
 				B12DEC5421253DF2004B7F6A /* World.cpp */,
@@ -495,6 +511,25 @@
 			path = physics;
 			sourceTree = "<group>";
 		};
+		B1B5F648219631E400DF3C1E /* udp */ = {
+			isa = PBXGroup;
+			children = (
+				B1B5F6492196325700DF3C1E /* UDP.cpp */,
+				B1B5F64A2196325700DF3C1E /* UDP.hpp */,
+			);
+			path = udp;
+			sourceTree = "<group>";
+		};
+		B1B5F692219667E600DF3C1E /* json */ = {
+			isa = PBXGroup;
+			children = (
+				B1B5F6942196680700DF3C1E /* JsonParser.cpp */,
+				B1B5F6932196680700DF3C1E /* JsonParser.hpp */,
+				B1B5F6952196680700DF3C1E /* picojson.h */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
 		B1BF9C5921277C7A0017E26F /* Texture */ = {
 			isa = PBXGroup;
 			children = (
@@ -530,12 +565,23 @@
 			path = Render;
 			sourceTree = "<group>";
 		};
+		B1DA28DA219F8F8F0013AA21 /* processing */ = {
+			isa = PBXGroup;
+			children = (
+				B1DA28DB219F8F9D0013AA21 /* Plane.cpp */,
+				B1DA28DC219F8F9D0013AA21 /* Plane.hpp */,
+				B1DA28DE219F8FB90013AA21 /* MapProcessor.cpp */,
+				B1DA28DF219F8FB90013AA21 /* MapProcessor.hpp */,
+			);
+			path = processing;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B12DEBC3212529E1004B7F6A /* Minecraft_CPP */ = {
+		B12DEBC3212529E1004B7F6A /* Mobile_Slam_CPP */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B12DEBCB212529E1004B7F6A /* Build configuration list for PBXNativeTarget "Minecraft_CPP" */;
+			buildConfigurationList = B12DEBCB212529E1004B7F6A /* Build configuration list for PBXNativeTarget "Mobile_Slam_CPP" */;
 			buildPhases = (
 				B12DEBC0212529E1004B7F6A /* Sources */,
 				B12DEBC1212529E1004B7F6A /* Frameworks */,
@@ -545,9 +591,9 @@
 			);
 			dependencies = (
 			);
-			name = Minecraft_CPP;
+			name = Mobile_Slam_CPP;
 			productName = OpenGLPractice1;
-			productReference = B12DEBC4212529E1004B7F6A /* Minecraft_CPP */;
+			productReference = B12DEBC4212529E1004B7F6A /* Mobile_Slam_CPP */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -576,7 +622,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B12DEBC3212529E1004B7F6A /* Minecraft_CPP */,
+				B12DEBC3212529E1004B7F6A /* Mobile_Slam_CPP */,
 			);
 		};
 /* End PBXProject section */
@@ -593,12 +639,14 @@
 				B12DEC3921253167004B7F6A /* UIComponent.cpp in Sources */,
 				B12DEC8E21267DB5004B7F6A /* Skybox.cpp in Sources */,
 				B1B1D6782128E80A00D46006 /* Player.cpp in Sources */,
+				B1DA28E0219F8FB90013AA21 /* MapProcessor.cpp in Sources */,
 				B12DEC9121267E12004B7F6A /* SkyboxRenderer.cpp in Sources */,
 				B12DEC3821253167004B7F6A /* UIBaseView.cpp in Sources */,
 				B1B1D67521288DB800D46006 /* AABB.cpp in Sources */,
 				B12DEC3A21253167004B7F6A /* UIManager.cpp in Sources */,
 				B12DEC4A21253D83004B7F6A /* GameMode.cpp in Sources */,
 				B1BF9C582127737E0017E26F /* SkyboxTexture.cpp in Sources */,
+				B1B5F64B2196325700DF3C1E /* UDP.cpp in Sources */,
 				B12DEC022125307C004B7F6A /* ResourceManager.cpp in Sources */,
 				B172F6CB2138BE53006E773F /* DBSqlite.cpp in Sources */,
 				B12DEC5121253DA7004B7F6A /* UITitleScreen.cpp in Sources */,
@@ -618,11 +666,13 @@
 				B17AEA10212AA2DD00C07259 /* Gravity.cpp in Sources */,
 				B1BF9C4D2126BC840017E26F /* Entity.cpp in Sources */,
 				B12DEC3021253167004B7F6A /* Updater.cpp in Sources */,
+				B1DA28DD219F8F9D0013AA21 /* Plane.cpp in Sources */,
 				B1BF9C5C21277E0F0017E26F /* Texture.cpp in Sources */,
 				B12DEC2E21253167004B7F6A /* TouchEvent.cpp in Sources */,
 				B12DEBC8212529E1004B7F6A /* main.cpp in Sources */,
 				B12DEBFF21253053004B7F6A /* OpenGL.cpp in Sources */,
 				B12DEC5621253DF2004B7F6A /* World.cpp in Sources */,
+				B1B5F6962196680700DF3C1E /* JsonParser.cpp in Sources */,
 				B12DEBE921252D6E004B7F6A /* Chunk.cpp in Sources */,
 				B12DEC3721253167004B7F6A /* UIButton.cpp in Sources */,
 				B17AEA0C212A932E00C07259 /* PerlinNoise.cpp in Sources */,
@@ -752,6 +802,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9ATL3QJQM9;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -789,7 +840,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B12DEBCB212529E1004B7F6A /* Build configuration list for PBXNativeTarget "Minecraft_CPP" */ = {
+		B12DEBCB212529E1004B7F6A /* Build configuration list for PBXNativeTarget "Mobile_Slam_CPP" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B12DEBCC212529E1004B7F6A /* Debug */,

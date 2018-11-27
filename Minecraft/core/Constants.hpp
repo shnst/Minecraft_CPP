@@ -9,36 +9,35 @@
 #ifndef Constants_hpp
 #define Constants_hpp
 
+//#define MAPPING_MODE
+
 /**
  * Constants.hpp defines constant global variables.
  */
 
-// X(meter) * METER_TO_POINT_RATIO = Y(screen point)
-const double METER_TO_POINT_RATIO = 52.0;
-const double TILE_SIZE_IN_POINT = 5.2;
+constexpr double TILE_SIZE_IN_POINT = 1.0;
 
-const double CAMERA_DEFAULT_WIDTH_IN_POINT = METER_TO_POINT_RATIO * 10;
-const double CAMERA_DEFAULT_HEIGHT_IN_POINT = METER_TO_POINT_RATIO * 10;
+constexpr int WINDOW_WIDTH = 1280;
+constexpr int WINDOW_HEIGHT = 960;
 
-const int WINDOW_WIDTH = 1280;
-const int WINDOW_HEIGHT = 960;
 
-const int FIELD_WIDTH = 200;
-const int FIELD_HEIGHT = 200;
+#ifdef MAPPING_MODE
+constexpr int NUMBER_OF_BLOCKS_IN_CHUNK_X = 50;
+constexpr int NUMBER_OF_BLOCKS_IN_CHUNK_Y = 50;
+constexpr int NUMBER_OF_BLOCKS_IN_CHUNK_Z = 50;
 
-const float PI_OVER_180 = 0.0174532925;
+constexpr int HORIZONTAL_CHUNK_LOAD_DISTANCE = 20;
+constexpr int WORLD_HEIGHT = 5;
+#else
+constexpr int NUMBER_OF_BLOCKS_IN_CHUNK_X = 5;
+constexpr int NUMBER_OF_BLOCKS_IN_CHUNK_Y = 5;
+constexpr int NUMBER_OF_BLOCKS_IN_CHUNK_Z = 5;
 
-const int NUMBER_OF_BLOCKS_IN_CHUNK_X = 10;
-const int NUMBER_OF_BLOCKS_IN_CHUNK_Y = 20;
-const int NUMBER_OF_BLOCKS_IN_CHUNK_Z = 10;
+constexpr int HORIZONTAL_CHUNK_LOAD_DISTANCE = 40;
+constexpr int WORLD_HEIGHT = 5;
+#endif
 
-const int NUMBER_OF_CHUNKS_IN_WORLD_X = 40;
-const int NUMBER_OF_CHUNKS_IN_WORLD_Y = 3;
-const int NUMBER_OF_CHUNKS_IN_WORLD_Z = 40;
-
-const double BLOCK_SIZE = 1.0;
-
-const int SEA_LEVEL = NUMBER_OF_BLOCKS_IN_CHUNK_Y * NUMBER_OF_CHUNKS_IN_WORLD_Y / 2 - 2;
+constexpr int SEA_LEVEL = WORLD_HEIGHT * NUMBER_OF_BLOCKS_IN_CHUNK_Y / 2 ;
 
 
 #endif /* Constants_hpp */

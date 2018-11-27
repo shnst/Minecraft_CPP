@@ -36,7 +36,7 @@ private:
     
     glm::vec3 position;
     glm::vec3 lookat;
-    glm::vec3 up;
+    const glm::vec3 up;
     
     glm::vec3 skyboxLookat;
     const glm::vec3 skyboxOrigin;

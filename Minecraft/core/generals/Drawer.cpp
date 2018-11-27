@@ -19,11 +19,11 @@ Drawer::Drawer()
 Drawer::~Drawer() {}
 
 void Drawer::draw() const {
-    for (auto it=items.begin(); it!=items.end(); ++it) {
-        if (!(*it)->isVisible()) {
+    for (auto& item : items) {
+        if (!item->isVisible()) {
             continue;
         }
-        (*it)->draw();
+        item->draw();
     }
 }
 

@@ -1,6 +1,6 @@
 //
 //  World.hpp
-//  OpenGLPractice1
+//  MineCraft_CPP
 //
 //  Created by Shun Sato on 8/15/18.
 //  Copyright © 2018 ShunSato. All rights reserved.
@@ -10,6 +10,8 @@
 #define World_hpp
 
 #include <list>
+#include <unordered_map>
+#include <thread>
 #include <vector>
 
 #include "Block.hpp"
@@ -47,7 +49,13 @@ public:
     bool doesChunkExist(int chunkX, int chunkY, int chunkZ) const;
     bool isPassable(const vec3d& coord) const;
     
+    void setHitBlock(const vec3d& position, const vec3d& hitCoord);
+    
+    void clearAllBlocks();
 private:
+    void loadChunks();
+    bool isPartOfPlane(const vec3n& coord);
+    void detectPlaneRecursion(const vec3n& coord, std::unordered_map<vec3n, bool>& memory, int& depth);
     
     ChunkManager* chunkManager;
     Skybox* skybox;
@@ -58,6 +66,11 @@ private:
     
     SkyboxRenderer* skyboxRenderer;
     ChunkRenderer* chunkRenderer;
+    
+    
+    std::vector<std::thread> chunkLoadThreads;
+    
+    bool isRunning;
 };
 
 #endif /* World_hpp */

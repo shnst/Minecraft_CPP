@@ -21,19 +21,19 @@ Updater::~Updater() {}
 
 void Updater::update(double delta, bool isContinuing)  {
     if (!isContinuing) {
-        for (auto it=items.begin(); it!=items.end(); ++it) {
-            (*it)->setHasUpdatedInThisFrame(false);
+        for (auto& item : items) {
+            item->setHasUpdatedInThisFrame(false);
         }
     }
     
-    for (auto it=items.begin(); it!=items.end(); ++it) {
-        if ((*it)->hasUpdatedInThisFrame()) {
+    for (auto& item : items) {
+        if (item->hasUpdatedInThisFrame()) {
             continue;
         }
-        (*it)->setHasUpdatedInThisFrame(true);
+        item->setHasUpdatedInThisFrame(true);
         
-        if (!(*it)->isPaused()) {
-            (*it)->update(delta);
+        if (!item->isPaused()) {
+            item->update(delta);
         }
         
         if (hasNumberOfRegisteredItemsChanged) {

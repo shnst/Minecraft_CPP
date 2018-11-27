@@ -33,16 +33,20 @@ ResourceManager::ResourceManager() {
 }
 
 ResourceManager::~ResourceManager() {
-    for (auto it=shaders.begin(); it!=shaders.end(); ++it) {
-        Utils::SafeDelete((*it).second);
+    for (auto& shader : shaders) {
+        Utils::SafeDelete(shader.second);
     }
     
-    for (auto it=textures.begin(); it!=textures.end(); ++it) {
-        glDeleteTextures(1, &(*it).second);
+    for (auto& texture : textures) {
+        glDeleteTextures(1, &texture.second);
     }
 }
 
 void ResourceManager::loadShader(const std::string& name, const std::vector<std::string>& uniforms, const std::vector<std::string>&  attributes) {
+    if (isShaderLoaded(name)) {
+        std::cout << "shader already loaded name:" << name << std::endl;
+        return;
+    }
     shaders[name] = new Shader(name, uniforms, attributes);
 }
 
@@ -59,6 +63,7 @@ void ResourceManager::loadTexture(const std::string& name) {
 
 const Shader* ResourceManager::getShader(const std::string& name) {
     if (!isShaderLoaded(name)) {
+        std::cout << "failed to get shader:" << name << std::endl;
         return nullptr;
     }
     return shaders.at(name);
@@ -66,6 +71,7 @@ const Shader* ResourceManager::getShader(const std::string& name) {
 
 unsigned int ResourceManager::getShaderUniform(const std::string& shaderName, const std::string& uniformName) {
     if (!isShaderLoaded(shaderName)) {
+        std::cout << "failed to get shader:" << shaderName << std::endl;
         return -1;
     }
     return shaders.at(shaderName)->uniformID.at(uniformName);
@@ -73,6 +79,7 @@ unsigned int ResourceManager::getShaderUniform(const std::string& shaderName, co
 
 unsigned int ResourceManager::getShaderAttribute(const std::string& shaderName, const std::string& attributeName) {
     if (!isShaderLoaded(shaderName)) {
+        std::cout << "failed to get shader:" << shaderName << std::endl;
         return -1;
     }
     return shaders.at(shaderName)->attributeID.at(attributeName);

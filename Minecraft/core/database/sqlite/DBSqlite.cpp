@@ -121,31 +121,27 @@ void DBSqlite::save(const ChunkManager& chunkManager) {
     
     beginTransaction(&db);
     
-    for (auto it1=chunks.begin(); it1!=chunks.end(); ++it1) {
-        for (auto it2=(*it1).begin(); it2!=(*it1).end(); ++it2) {
-            for (auto it3=(*it2).begin(); it3!=(*it2).end(); ++it3) {
-                auto chunk = *it3;
-                auto chunkCoord = chunk->getCoord();
-                
-                auto blocks = chunk->getBlocks();
-                
-                std::ostringstream query;
-                query << "insert or replace into chunk (x, y, z, width, height, length, data) values("
-                << chunkCoord.x << ", "
-                << chunkCoord.y << ", "
-                << chunkCoord.z << ", "
-                << NUMBER_OF_BLOCKS_IN_CHUNK_X << ", "
-                << NUMBER_OF_BLOCKS_IN_CHUNK_Y << ", "
-                << NUMBER_OF_BLOCKS_IN_CHUNK_Z << ", "
-                << "\"" << chunk->serializeBlocks() << "\""
-                << ");";
-                
-                std::cout << "DBSqlite::save" << query.str() << std::endl;
-                
-                // TODO : Error handling.
-                executeQuery(&db, query.str());
-            }
-        }
+    
+    for (const auto& chunk : chunks) {
+        auto chunkCoord = chunk.second->getCoord();
+        
+        auto blocks = chunk.second->getBlocks();
+        
+        std::ostringstream query;
+        query << "insert or replace into chunk (x, y, z, width, height, length, data) values("
+        << chunkCoord.x << ", "
+        << chunkCoord.y << ", "
+        << chunkCoord.z << ", "
+        << NUMBER_OF_BLOCKS_IN_CHUNK_X << ", "
+        << NUMBER_OF_BLOCKS_IN_CHUNK_Y << ", "
+        << NUMBER_OF_BLOCKS_IN_CHUNK_Z << ", "
+        << "\"" << chunk.second->serializeBlocks() << "\""
+        << ");";
+        
+        std::cout << "DBSqlite::save" << query.str() << std::endl;
+        
+        // TODO : Error handling.
+        executeQuery(&db, query.str());
     }
     
     endTransaction(&db);

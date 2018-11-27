@@ -10,8 +10,10 @@
 #define ChunkRenderer_hpp
 
 #include <list>
+#include <unordered_map>
 
 #include "Block.hpp"
+#include "Vector3d.hpp"
 
 class Camera;
 class Chunk;
@@ -25,8 +27,8 @@ public:
     ChunkRenderer();
     ~ChunkRenderer();
     
-    void createMesh(const World& world, const std::vector<std::vector<std::vector<Chunk*>>>& chunks);
-    void render(const Camera& camera, const World& world, const std::vector<std::vector<std::vector<Chunk*>>>& chunks);
+    void render(const Camera& camera, const World& world, const std::unordered_map<vec3n, Chunk*>& chunks) const;
+    void updateMesh(const std::unordered_map<vec3n, Chunk*>& chunks);
 private:
     
     Mesh* mesh;

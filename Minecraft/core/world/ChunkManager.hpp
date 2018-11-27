@@ -9,6 +9,7 @@
 #ifndef ChunkManager_hpp
 #define ChunkManager_hpp
 
+#include <unordered_map>
 #include <vector>
 
 #include "Block.hpp"
@@ -22,17 +23,27 @@ public:
     ChunkManager();
     ~ChunkManager();
     
-    const std::vector<std::vector<std::vector<Chunk*>>>& getChunks() const;
+    const std::unordered_map<vec3n, Chunk*>& getChunks() const;
     bool isPassable(const vec3d& coord) const;
-    bool isBlocked(int worldChunkX, int worldChunkY, int worldChunkZ) const;
-    void setBlock(int x, int y, int z, Blocks::Types block);
-    Blocks::Types getBlock(int x, int y, int z) const;
+    bool isBlocked(double worldX, double worldY, double worldZ) const;
+    void setBlock(double worldX, double worldY, double worldZ, Blocks::Types block);
+    Blocks::Types getBlock(double worldX, double worldY, double worldZ) const;
     vec3d getSpawnPoint() const;
-private:
-    bool doesChunkExist(int chunkX, int chunkY, int chunkZ) const;
-    void generateChunks();
+    bool isWorldCoordinateInsideCurrentChunks(double worldX, double worldY, double worldZ) const;
+    void updateChunksCoord(const vec3d& playerCoord);
     
-    std::vector<std::vector<std::vector<Chunk*>>> chunks;
+    void clearAllBlocks();
+    
+    bool isChunkLoaded(const vec3n& coord) const;
+    void loadChunk(const vec3n& coord);
+    bool createChunkMesh(const vec3n& coord);
+    
+    void updateMesh();
+private:
+    
+    vec3n chunksCoord;
+    std::unordered_map<vec3n, Chunk*> chunks;
+    
     TerrainGenerator* terrainGenerator;
 };
 

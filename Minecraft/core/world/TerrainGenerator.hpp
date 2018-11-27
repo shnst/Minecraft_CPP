@@ -11,6 +11,8 @@
 
 #include <vector>
 
+#include "Vector3d.hpp"
+
 class Chunk;
 class PerlinNoise;
 class ChunkManager;
